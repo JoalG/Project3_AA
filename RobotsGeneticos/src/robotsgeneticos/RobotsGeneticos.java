@@ -5,6 +5,9 @@
  */
 package robotsgeneticos;
 
+import Model.Genes;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 /**
  *
  * @author joalg
@@ -16,6 +19,10 @@ public class RobotsGeneticos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Genes genes = new Genes();
+        System.out.println("Camara t: "+genes.getTCamara().getTipo());
+        System.out.println("Motor t: "+genes.getTMotor().getTipo());
+        System.out.println("Bateria t: "+genes.getTBateria().getTipo());
     }
     
 }

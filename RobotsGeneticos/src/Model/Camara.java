@@ -23,6 +23,8 @@ public class Camara {
     
     
     public Camara(int tipo) {
+        this.tipo = tipo;
+        System.out.println("Mecago en Araya"+tipo);
         
         switch(tipo){
             case 1:

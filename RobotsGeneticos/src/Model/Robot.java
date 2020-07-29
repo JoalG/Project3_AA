@@ -14,11 +14,13 @@ public class Robot {
     public Camara camara;
     public Motor motor;
     public Bateria bateria;
+    public Genes genes;
 
-    public Robot(Camara camara, Motor motor, Bateria bateria) {
-        this.camara = camara;
-        this.motor = motor;
-        this.bateria = bateria;
+    public Robot() {
+        this.genes = new Genes();
+        this.camara = genes.getTCamara();
+        this.motor = genes.getTMotor();
+        this.bateria = genes.getTBateria();
     }
     
     
