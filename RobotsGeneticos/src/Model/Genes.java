@@ -16,7 +16,10 @@ public class Genes {
 
     public Genes() {
         this.adn = new ArrayList<Integer>();
-        for (int i = 0; i < 8*3; i++) {
+        int byteLength = 8;
+        int numOfBytes = 3;
+        
+        for (int i = 0; i < byteLength*numOfBytes; i++) {
             double prob = Math.random();
             if(prob > 0.5){
                 adn.add(1);
