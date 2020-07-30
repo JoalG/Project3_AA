@@ -26,6 +26,19 @@ public class Robot {
     public void cruce(Robot robot){
         this.genes.cruce(robot.genes);
     }
+
+    @Override
+    public String toString() {
+        
+        String robotS = "Camara: " + Integer.toString(this.camara.getTipo()) + "\n";
+        robotS += "Motor: " + Integer.toString(this.motor.getTipo()) + "\n";
+        robotS += "Bateria: " + Integer.toString(this.bateria.getTipo()) + "\n";
+        robotS += this.genes.adnToString();
+        
+        return  robotS; 
+    }
+    
+    
     
     
 }

@@ -6,6 +6,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -13,13 +14,13 @@ import java.util.ArrayList;
  */
 public class Genes {
     private ArrayList<Integer> adn ;
+    int numOfBits;
 
     public Genes() {
         this.adn = new ArrayList<Integer>();
-        int byteLength = 8;
-        int numOfBytes = 3;
+        this.numOfBits = 24;
         
-        for (int i = 0; i < byteLength*numOfBytes; i++) {
+        for (int i = 0; i < this.numOfBits; i++) {
             double prob = Math.random();
             if(prob > 0.5){
                 adn.add(1);
@@ -76,7 +77,27 @@ public class Genes {
     }
     
     public void cruce(Genes gen){
-        //AQUI JOAQUIN 
+        
+        Random r = new Random();
+        int pos = r.nextInt(gen.numOfBits);
+        
+        System.out.println("Pos: " + pos);
+        
+        for (int i = 0; i <= pos; i++) {
+            int temp = gen.adn.get(i);
+            gen.adn.set(i, this.adn.get(i));
+            this.adn.set(i, temp);
+        }
+    }
+    
+    public String adnToString(){
+        String adnString = "";
+        
+        for (int i = 0; i < this.numOfBits; i++) {
+            adnString += Integer.toString(this.adn.get(i)) + "-"; 
+        }
+        
+        return adnString;
     }
        
 }
