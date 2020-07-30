@@ -23,6 +23,9 @@ public class Robot {
         this.bateria = genes.getTBateria();
     }
     
+    public void cruce(Robot robot){
+        this.genes.cruce(robot.genes);
+    }
     
     
 }

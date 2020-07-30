@@ -75,5 +75,8 @@ public class Genes {
         return res;
     }
     
-    
+    public void cruce(Genes gen){
+        //AQUI JOAQUIN 
+    }
+       
 }
