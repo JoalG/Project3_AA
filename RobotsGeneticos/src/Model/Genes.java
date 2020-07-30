@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Genes {
     private ArrayList<Integer> adn ;
-    int numOfBits;
+    private int numOfBits;
 
     public Genes() {
         this.adn = new ArrayList<Integer>();
@@ -98,6 +98,14 @@ public class Genes {
         }
         
         return adnString;
+    }
+
+    public int getNumOfBits() {
+        return numOfBits;
+    }
+
+    public void setNumOfBits(int numOfBits) {
+        this.numOfBits = numOfBits;
     }
        
 }

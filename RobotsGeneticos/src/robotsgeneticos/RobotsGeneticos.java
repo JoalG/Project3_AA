@@ -5,6 +5,7 @@
  */
 package robotsgeneticos;
 
+import Model.Generacion;
 import Model.Genes;
 import Model.Robot;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
@@ -20,7 +21,7 @@ public class RobotsGeneticos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Genes genes = new Genes();
+       /* Genes genes = new Genes();
         
         System.out.println("Camara t: "+genes.getTCamara().getTipo());
         System.out.println("Motor t: "+genes.getTMotor().getTipo());
@@ -35,7 +36,15 @@ public class RobotsGeneticos {
         robot1.cruce(robot2);
         
         System.out.println(robot1.toString());
-        System.out.println(robot2.toString());
+        System.out.println(robot2.toString());*/
+       
+       Generacion generacion = new Generacion(20, 8);
+       generacion.printGenesGen();
+       System.out.println("#############################################");
+       generacion.Mutacion();
+       System.out.println("#############################################");
+       generacion.printGenesGen();
+      
     }
     
 }
