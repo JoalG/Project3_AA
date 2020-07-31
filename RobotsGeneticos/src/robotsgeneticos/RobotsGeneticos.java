@@ -8,6 +8,7 @@ package robotsgeneticos;
 import Model.Generacion;
 import Model.Genes;
 import Model.Robot;
+import Model.Terreno;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 /**
@@ -38,13 +39,16 @@ public class RobotsGeneticos {
         System.out.println(robot1.toString());
         System.out.println(robot2.toString());*/
        
-       Generacion generacion = new Generacion(20, 8);
+       /*Generacion generacion = new Generacion(20, 8);
        generacion.printGenesGen();
        System.out.println("#############################################");
        generacion.Mutacion();
        System.out.println("#############################################");
-       generacion.printGenesGen();
+       generacion.printGenesGen();*/
       
+       Terreno t = new Terreno(5);
+       System.out.println(t);
+       
     }
     
 }

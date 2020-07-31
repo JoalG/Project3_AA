@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.Random;
+
 /**
  *
  * @author joalg
@@ -14,6 +16,14 @@ public enum TipoTerreno {
     NORMAL,
     MODERADO,
     DIFICIL,
-    BLOQUEADO
+    BLOQUEADO;
+    
+    public static TipoTerreno randomChoice() {
+
+        int pick = new Random().nextInt(TipoTerreno.values().length);
+
+        return TipoTerreno.values()[pick];
+
+    }
     
 }
