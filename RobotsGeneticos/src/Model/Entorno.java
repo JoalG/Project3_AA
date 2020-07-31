@@ -10,5 +10,13 @@ package Model;
  * @author joalg
  */
 public class Entorno {
-    public Terreno terr
+    public Terreno terreno;
+    public Generacion generacion;
+
+    public Entorno() {
+        this.terreno = new Terreno(20);
+        this.generacion = new Generacion(200, 4);
+        
+    }
+
 }
