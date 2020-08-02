@@ -75,9 +75,11 @@ public class Robot {
         
         sortResultados(res, posEstados);
         
-        for (int i = 0; i < posEstados.length; i++) {
-            System.out.println("pos " + i + ": " + posEstados[i]);
-        }
+        cadena.setEstado1(posEstados[0]);
+        cadena.setEstado2(posEstados[1]);
+        cadena.setEstado3(posEstados[2]);
+        cadena.setEstado4(posEstados[3]);
+        
     }
     
     public int getRandomElement(ArrayList<Integer> list) 
