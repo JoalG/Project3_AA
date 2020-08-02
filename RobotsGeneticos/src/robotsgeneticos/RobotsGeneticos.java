@@ -47,10 +47,20 @@ public class RobotsGeneticos {
        System.out.println("#############################################");
        generacion.printGenesGen();*/
       
-       /*Terreno t = new Terreno(5);
-       System.out.println(t);*/
+       Terreno t = new Terreno(20);
+       System.out.println(t);
        
        
+        Robot robot1 = new Robot();
+        System.out.println(robot1.toString());
+        int[] pos = new int[2];
+        pos[0] = 19;
+        pos[1] = 0;
+        robot1.calcBetterOptions(pos, t);
+       
+       
+       
+       /*
         Genes gen = new Genes(); 
         double total = 0;
         total += gen.getProb1();
@@ -69,7 +79,7 @@ public class RobotsGeneticos {
         for (int i = 0; i < 10; i++) {
             System.out.println(cadena.obtenerEstado());        
         }
-
+*/
         
 
        

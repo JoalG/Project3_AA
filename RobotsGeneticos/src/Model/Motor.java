@@ -26,10 +26,10 @@ public class Motor {
     
     
     public Motor(int tipo) {
-        this.tipo = tipo;
+        this.tipo = 1;
         this.tiposDeTerreno = new ArrayList<TipoTerreno>();
         
-        switch(tipo){
+        switch(this.tipo){
             case 1:
                 this.costo = 0;
                 this.consumo = 0;
@@ -80,4 +80,14 @@ public class Motor {
     public void setConsumo(int consumo) {
         this.consumo = consumo;
     }
+
+    public ArrayList<TipoTerreno> getTiposDeTerreno() {
+        return tiposDeTerreno;
+    }
+
+    public void setTiposDeTerreno(ArrayList<TipoTerreno> tiposDeTerreno) {
+        this.tiposDeTerreno = tiposDeTerreno;
+    }
+    
+    
 }

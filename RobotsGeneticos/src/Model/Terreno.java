@@ -30,13 +30,33 @@ public class Terreno {
         for (int i = 0; i < this.dimension; i++) {
             String row = "";
             for (int j = 0; j < this.dimension; j++) {
-                
-                row += "\t"+this.espacios[i][j]+"\t";
+                String str = this.espacios[i][j].toString();
+                while(str.length()<10){
+                    str+="+";
+                }
+                    
+                row += "\t"+str;
                 
             }
             res = res+row+"\n";
         }
         return res;
+    }
+
+    public int getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(int dimension) {
+        this.dimension = dimension;
+    }
+
+    public TipoTerreno[][] getEspacios() {
+        return espacios;
+    }
+
+    public void setEspacios(TipoTerreno[][] espacios) {
+        this.espacios = espacios;
     }
 
     
