@@ -5,13 +5,14 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author joalg
  */
-public class Motor {
+public class Motor implements Serializable {
     private int tipo;
     private int costo;
     private int consumo; 
@@ -26,7 +27,7 @@ public class Motor {
     
     
     public Motor(int tipo) {
-        this.tipo = 1;
+        this.tipo = tipo;
         this.tiposDeTerreno = new ArrayList<TipoTerreno>();
         
         switch(this.tipo){

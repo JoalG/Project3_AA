@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.io.Serializable;
 import static java.lang.Math.random;
 import java.util.Random;
 
@@ -12,7 +13,7 @@ import java.util.Random;
  *
  * @author joalg
  */
-public class CadenaDeMarkov {
+public class CadenaDeMarkov implements Serializable{
     private TipoEstado estado1;
     private TipoEstado estado2;
     private TipoEstado estado3;

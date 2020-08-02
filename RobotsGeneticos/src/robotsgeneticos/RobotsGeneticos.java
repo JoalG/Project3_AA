@@ -6,6 +6,8 @@
 package robotsgeneticos;
 
 import Model.CadenaDeMarkov;
+import Model.CloneClass;
+import Model.Entorno;
 import Model.Generacion;
 import Model.Genes;
 import Model.Robot;
@@ -52,11 +54,27 @@ public class RobotsGeneticos {
        
        
         Robot robot1 = new Robot();
-        System.out.println(robot1.toString());
+
+        System.out.println(robot1);
+
         int[] pos = new int[2];
         pos[0] = 19;
         pos[1] = 0;
         robot1.calcBetterOptions(pos, t);
+        System.out.println("Selccione la:" + robot1.cadena.obtenerEstado());
+//        
+//        Genes gen = robot1.genes; 
+//        double total = 0;
+//        total += gen.getProb1();
+//        System.out.println(gen.getProb1());
+//        total += gen.getProb2();
+//        System.out.println(gen.getProb2());
+//        total += gen.getProb3();
+//        System.out.println(gen.getProb3());
+//        total += gen.getProb4();
+//        System.out.println(gen.getProb4());
+//        
+//        System.out.println("Total: "+total);
        
        
        
@@ -79,8 +97,9 @@ public class RobotsGeneticos {
         for (int i = 0; i < 10; i++) {
             System.out.println(cadena.obtenerEstado());        
         }
-*/
-        
+//*/
+//        Entorno entorno = new Entorno();
+//        System.out.println(entorno);
 
        
     }

@@ -5,18 +5,26 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author joalg
  */
 public class Entorno {
     public Terreno terreno;
-    public Generacion generacion;
+    public ArrayList<Generacion> generaciones;
 
     public Entorno() {
         this.terreno = new Terreno(20);
-        this.generacion = new Generacion(200, 4);
-        
+        this.generaciones = new ArrayList<Generacion>();
+        this.generaciones.add(new Generacion(200, 4));
     }
+
+    @Override
+    public String toString() {
+        return "Entorno{" + "generaciones=" + generaciones + '}';
+    }
+    
 
 }

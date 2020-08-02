@@ -49,6 +49,11 @@ public class Generacion {
         }
         System.out.println(res);
     }
+
+    @Override
+    public String toString() {
+        return "Generacion{" + "individuos=" + individuos + ", indiceMutacion=" + indiceMutacion + '}';
+    }
     
     
     

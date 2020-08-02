@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,7 +13,7 @@ import java.util.Random;
  *
  * @author joalg
  */
-public class Genes {
+public class Genes implements Serializable{
     private ArrayList<Integer> adn ;
     private int numOfBits;
 

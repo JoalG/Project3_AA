@@ -6,6 +6,7 @@
 package Model;
 
 import static com.oracle.jrockit.jfr.DataType.INTEGER;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -14,13 +15,14 @@ import java.util.Random;
  *
  * @author joalg
  */
-public class Robot {
+public class Robot implements Serializable{
     
     public Camara camara;
     public Motor motor;
     public Bateria bateria;
     public Genes genes;
     public CadenaDeMarkov cadena;
+    public ArrayList<Reporte> historial = new ArrayList<>();
 
     
 
@@ -30,6 +32,7 @@ public class Robot {
         this.motor = genes.getTMotor();
         this.bateria = genes.getTBateria();
         this.cadena = new CadenaDeMarkov(this.genes);
+        this.historial = new ArrayList<>();
     }
     
     public void cruce(Robot robot){
@@ -66,12 +69,12 @@ public class Robot {
                 disponibles.add(i);
             }
         }
-        
-        for (int i = 0; i < res.length; i++) {
-            if(res[i] == Integer.MIN_VALUE){
-                posEstados[i] = TipoEstado.getByPosition(getRandomElement(disponibles));
-            }
-        }
+//        
+//        for (int i = 0; i < res.length; i++) {
+//            if(res[i] == Integer.MIN_VALUE){
+//                posEstados[i] = TipoEstado.getByPosition(getRandomElement(disponibles));
+//            }
+//        }
         
         sortResultados(res, posEstados);
         
@@ -79,6 +82,10 @@ public class Robot {
         cadena.setEstado2(posEstados[1]);
         cadena.setEstado3(posEstados[2]);
         cadena.setEstado4(posEstados[3]);
+        
+        for (int i = 0; i < res.length; i++) {
+            System.out.println("Con : "+res[i]+" El "+i+" es: "+ posEstados[i]);
+        }
         
     }
     
@@ -187,12 +194,23 @@ public class Robot {
                 continue;
             }
             
-            if(visited.indexOf(posTemp) == -1){
+            
+            boolean visitado = false;
+            for (int j = 0; j < visited.size(); j++) {
+                if(visited.get(j)[0]==posTemp[0] && visited.get(j)[1]==posTemp[1]){
+                    visitado = true;
+                }
+            }
+            
+            if(!visitado){
+                
                 ArrayList<int[]> visitedTemp = (ArrayList<int[]>) visited.clone();
                 visitedTemp.add(posTemp);
+                
                 parciales[i] = evaluarDireccion( profundidad-1 , 0,  posTemp,  terreno,visitedTemp);  
             }
             else{
+                System.out.println("PICHAAAA");
                 parciales[i] = Integer.MIN_VALUE;
             }
 
@@ -202,6 +220,9 @@ public class Robot {
         return res+Math.max(parciales[0],Math.max(parciales[1],Math.max(parciales[2],parciales[3])) );
         
     }
+    
+    
+
     
 
     public void calcPuntuaciones(int profundidad , int[] res, int[] pos, Terreno terreno){
@@ -260,6 +281,8 @@ public class Robot {
         
         
     }
+
+
     
 
     
