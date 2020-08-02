@@ -22,7 +22,8 @@ public class Robot implements Serializable{
     public Bateria bateria;
     public Genes genes;
     public CadenaDeMarkov cadena;
-    public ArrayList<Reporte> historial = new ArrayList<>();
+    private ArrayList<int[]> recorrido;
+    public int[] posActual;
 
     
 
@@ -32,7 +33,10 @@ public class Robot implements Serializable{
         this.motor = genes.getTMotor();
         this.bateria = genes.getTBateria();
         this.cadena = new CadenaDeMarkov(this.genes);
-        this.historial = new ArrayList<>();
+        this.recorrido = new ArrayList<>();
+        this.posActual = new int[2];
+        this.posActual[0] = 19;
+        this.posActual[1] = 0;
     }
     
     public void cruce(Robot robot){
@@ -48,6 +52,55 @@ public class Robot implements Serializable{
         robotS += this.genes.adnToString();
         
         return  robotS; 
+    }
+    
+    
+    
+    
+    public void moverPosicion(Terreno terreno){
+        calcBetterOptions(posActual, terreno);
+        TipoEstado estado = cadena.obtenerEstado();
+        System.out.println("Seleccione la: " + estado);
+        int[] posTemp = new int[2];
+        posTemp[0] = posActual[0];
+        posTemp[1] = posActual[1];
+        switch(estado){
+            case ARRIBA:
+                if(posTemp[0]>0){
+                    posTemp[0] = posTemp[0]-1; 
+                }
+                break;
+            case ABAJO:
+                if(posTemp[0]<19){
+                    posTemp[0] = posTemp[0]+1; 
+                }                
+                break;
+            case IZQUIERDA:
+                 if(posTemp[1] > 0){
+                    posTemp[1] = posTemp[1]-1; 
+                }     
+                break;
+            case DERECHA:
+                if(posTemp[1] < 19){
+                    posTemp[1] = posTemp[1]+1; 
+                }    
+                break;
+        }
+        System.out.println("Estaba en: "+posActual[0]+","+posActual[1]);
+        posActual = posTemp;
+        System.out.println("Me movi a: "+posActual[0]+","+posActual[1]);
+        int[][] board = new int[20][20];
+        board[posActual[0]][posActual[1]]=5;
+        String strBoard = "";
+        for (int i = 0; i < board.length; i++) {
+            String line = "";
+            for (int j = 0; j < board[0].length; j++) {
+                line+=board[i][j]+" ";
+            }
+            strBoard+=line+"\n";
+        }
+        System.out.println(strBoard);
+        
     }
     
     
@@ -189,32 +242,37 @@ public class Robot implements Serializable{
                 
             }
             
-            if(pos == posTemp){
+            if(pos[0] == posTemp[0] && pos[1]==posTemp[1]){
                 parciales[i] = Integer.MIN_VALUE;
                 continue;
             }
-            
             
             boolean visitado = false;
             for (int j = 0; j < visited.size(); j++) {
                 if(visited.get(j)[0]==posTemp[0] && visited.get(j)[1]==posTemp[1]){
                     visitado = true;
                 }
-            }
-            
-            if(!visitado){
-                
+            }            
+            if(!visitado){                
                 ArrayList<int[]> visitedTemp = (ArrayList<int[]>) visited.clone();
-                visitedTemp.add(posTemp);
-                
+                visitedTemp.add(posTemp);         
                 parciales[i] = evaluarDireccion( profundidad-1 , 0,  posTemp,  terreno,visitedTemp);  
             }
             else{
-                System.out.println("PICHAAAA");
                 parciales[i] = Integer.MIN_VALUE;
             }
 
 
+        }
+        
+        boolean visitadoRecorrido = false;
+        for (int j = 0; j < this.recorrido.size(); j++) {
+            if(this.recorrido.get(j)[0]==pos[0] && this.recorrido.get(j)[1]==pos[1]){
+                visitadoRecorrido = true;
+            }
+        }
+        if (visitadoRecorrido) {
+            res = res -60;
         }
         
         return res+Math.max(parciales[0],Math.max(parciales[1],Math.max(parciales[2],parciales[3])) );
@@ -222,9 +280,6 @@ public class Robot implements Serializable{
     }
     
     
-
-    
-
     public void calcPuntuaciones(int profundidad , int[] res, int[] pos, Terreno terreno){
           
         for (int i = 0; i < 4; i++) {
@@ -239,7 +294,7 @@ public class Robot implements Serializable{
                 case 0:
                     if(posTemp[0]>0){
                         posTemp[0] = posTemp[0]-1;
-                        res[i] = evaluarDireccion(profundidad, 0, posTemp, terreno,visited);
+                        res[i] = evaluarDireccion(profundidad, 0, posTemp, terreno,visited)+60;
                     }
                     else{
                         res[i] = Integer.MIN_VALUE;
@@ -269,7 +324,7 @@ public class Robot implements Serializable{
                 case 3:
                     if(posTemp[1]<19){
                         posTemp[1] = posTemp[1]+1;
-                        res[i] = evaluarDireccion(profundidad, 0, posTemp, terreno,visited);
+                        res[i] = evaluarDireccion(profundidad, 0, posTemp, terreno,visited)+60;
                     }
                     else{
                         res[i] = Integer.MIN_VALUE;
@@ -277,6 +332,7 @@ public class Robot implements Serializable{
                     
                     break;
             }
+            
         }
         
         
@@ -285,7 +341,5 @@ public class Robot implements Serializable{
 
     
 
-    
-    
-    
+ 
 }

@@ -60,8 +60,13 @@ public class RobotsGeneticos {
         int[] pos = new int[2];
         pos[0] = 19;
         pos[1] = 0;
-        robot1.calcBetterOptions(pos, t);
-        System.out.println("Selccione la:" + robot1.cadena.obtenerEstado());
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("------------------------------------------------------------------------------");
+            robot1.moverPosicion(t);
+            System.out.println("------------------------------------------------------------------------------");
+        }
+        
+        
 //        
 //        Genes gen = robot1.genes; 
 //        double total = 0;
