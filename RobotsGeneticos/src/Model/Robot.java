@@ -7,6 +7,7 @@ package Model;
 
 import static com.oracle.jrockit.jfr.DataType.INTEGER;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -19,6 +20,7 @@ public class Robot {
     public Motor motor;
     public Bateria bateria;
     public Genes genes;
+    public CadenaDeMarkov cadena;
 
     
 
@@ -27,6 +29,7 @@ public class Robot {
         this.camara = genes.getTCamara();
         this.motor = genes.getTMotor();
         this.bateria = genes.getTBateria();
+        this.cadena = new CadenaDeMarkov(this.genes);
     }
     
     public void cruce(Robot robot){
@@ -47,12 +50,62 @@ public class Robot {
     
     public void calcBetterOptions(int[] pos, Terreno terreno){
         int[] res = new int[4];
+        // pos 0-3: ARRIBA, ABAJO , IZQ , DER  
+        TipoEstado[] posEstados = new TipoEstado[4];
+        posEstados[0] = TipoEstado.ARRIBA;
+        posEstados[1] = TipoEstado.ABAJO;
+        posEstados[2] = TipoEstado.IZQUIERDA;
+        posEstados[3] = TipoEstado.DERECHA; 
+        
         calcPuntuaciones(camara.getTipo(), res ,pos , terreno);
+        
+        ArrayList<Integer> disponibles = new ArrayList<>();
+        
         for (int i = 0; i < res.length; i++) {
-            System.out.println(res[i]);
+            if (res[i] != Integer.MIN_VALUE) {
+                disponibles.add(i);
+            }
         }
         
+        for (int i = 0; i < res.length; i++) {
+            if(res[i] == Integer.MIN_VALUE){
+                posEstados[i] = TipoEstado.getByPosition(getRandomElement(disponibles));
+            }
+        }
         
+        sortResultados(res, posEstados);
+        
+        for (int i = 0; i < posEstados.length; i++) {
+            System.out.println("pos " + i + ": " + posEstados[i]);
+        }
+    }
+    
+    public int getRandomElement(ArrayList<Integer> list) 
+    { 
+        Random rand = new Random(); 
+        return list.get(rand.nextInt(list.size())); 
+    }
+    
+    public void sortResultados(int[] res, TipoEstado[] posEstados) 
+    { 
+        int n = res.length; 
+        for (int i = 1; i < n; ++i) { 
+            int key = res[i];
+            TipoEstado keyEstado = posEstados[i];
+            int j = i - 1; 
+  
+            /* Move elements of arr[0..i-1], that are 
+               greater than key, to one position ahead 
+               of their current position */
+            while (j >= 0 && res[j] < key) { 
+                res[j + 1] = res[j]; 
+                posEstados[j + 1] = posEstados[j];
+                
+                j = j - 1; 
+            } 
+            res[j + 1] = key;
+            posEstados[j + 1] = keyEstado;
+        } 
     }
     
     public int evaluarCasilla(int[] pos, Terreno terreno){

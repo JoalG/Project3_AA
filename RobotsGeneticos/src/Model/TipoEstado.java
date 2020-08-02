@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.Random;
+
 /**
  *
  * @author joalg
@@ -14,4 +16,20 @@ public enum TipoEstado {
     ABAJO,
     IZQUIERDA,
     DERECHA;
+
+    
+    public static TipoEstado randomChoice() {
+
+        int pick = new Random().nextInt(TipoEstado.values().length);
+
+        return TipoEstado.values()[pick];
+
+    }
+    
+    public static TipoEstado getByPosition(int i){
+        
+        return TipoEstado.values()[i];
+        
+    }
+
 }
