@@ -16,6 +16,8 @@ public class Robot {
     public Bateria bateria;
     public Genes genes;
 
+    
+
     public Robot() {
         this.genes = new Genes();
         this.camara = genes.getTCamara();
@@ -38,6 +40,8 @@ public class Robot {
         return  robotS; 
     }
     
+    
+
     
     
     

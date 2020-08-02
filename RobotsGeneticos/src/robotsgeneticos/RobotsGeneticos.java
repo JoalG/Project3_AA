@@ -5,6 +5,7 @@
  */
 package robotsgeneticos;
 
+import Model.CadenaDeMarkov;
 import Model.Generacion;
 import Model.Genes;
 import Model.Robot;
@@ -22,7 +23,7 @@ public class RobotsGeneticos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       /* Genes genes = new Genes();
+        /*Genes genes = new Genes();
         
         System.out.println("Camara t: "+genes.getTCamara().getTipo());
         System.out.println("Motor t: "+genes.getTMotor().getTipo());
@@ -37,7 +38,7 @@ public class RobotsGeneticos {
         robot1.cruce(robot2);
         
         System.out.println(robot1.toString());
-        System.out.println(robot2.toString());*/
+        System.out.println(robot2.toString()); */
        
        /*Generacion generacion = new Generacion(20, 8);
        generacion.printGenesGen();
@@ -46,8 +47,31 @@ public class RobotsGeneticos {
        System.out.println("#############################################");
        generacion.printGenesGen();*/
       
-       Terreno t = new Terreno(5);
-       System.out.println(t);
+       /*Terreno t = new Terreno(5);
+       System.out.println(t);*/
+       
+       
+        Genes gen = new Genes(); 
+        double total = 0;
+        total += gen.getProb1();
+        System.out.println(gen.getProb1());
+        total += gen.getProb2();
+        System.out.println(gen.getProb2());
+        total += gen.getProb3();
+        System.out.println(gen.getProb3());
+        total += gen.getProb4();
+        System.out.println(gen.getProb4());
+        
+        System.out.println("Total: "+total);
+        
+        CadenaDeMarkov cadena = new CadenaDeMarkov(gen);
+        
+        for (int i = 0; i < 10; i++) {
+            System.out.println(cadena.obtenerEstado());        
+        }
+
+        
+
        
     }
     

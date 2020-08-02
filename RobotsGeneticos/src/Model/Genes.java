@@ -18,7 +18,7 @@ public class Genes {
 
     public Genes() {
         this.adn = new ArrayList<Integer>();
-        this.numOfBits = 24;
+        this.numOfBits = 56;
         
         for (int i = 0; i < this.numOfBits; i++) {
             double prob = Math.random();
@@ -36,22 +36,44 @@ public class Genes {
     }
     
     public Camara getTCamara(){
-        int gen = getIntByByte(0, 7);
+        int gen = getIntByByte(0);
         double normalized = (double)gen/(double)256;
         return new Camara(getTipoP(normalized));
     }
     
     public Motor getTMotor(){
-        int gen = getIntByByte(8, 15);
+        int gen = getIntByByte(1);
         double normalized = (double)gen/(double)256;
         return new Motor(getTipoP(normalized));
     }
     
     public Bateria getTBateria(){
-        int gen = getIntByByte(16, 23);
+        int gen = getIntByByte(2);
         double normalized = (double)gen/(double)256;
         return new Bateria(getTipoP(normalized));
     }
+    public double getProb1(){
+        return ((double)getIntByByte(3) * 100)/ (double)getCantProb();
+    }
+    public double getProb2(){
+        return ((double)getIntByByte(4) * 100)/ (double)getCantProb();
+    }
+    public double getProb3(){
+        return ((double)getIntByByte(5) * 100)/ (double)getCantProb();
+    }
+    public double getProb4(){
+        return ((double)getIntByByte(6) * 100)/ (double)getCantProb();
+    }
+   
+    public int getCantProb(){
+        int res = 0;
+        res += getIntByByte(3);
+        res += getIntByByte(4);
+        res += getIntByByte(5);
+        res += getIntByByte(6);
+        return res;
+    }
+    
     
     public int getTipoP(double n){
         if(n<0.33){
@@ -65,14 +87,24 @@ public class Genes {
         }
     }
     
-    public int getIntByByte(int ini, int fin){
+    public int getIntByByte(int nByte){
+        int[] rango = getRangoByte(nByte);
         int res = 0;
-        for (int i = ini; i <= fin; i++) {
+            
+        for (int i = rango[1]; i >= rango[0]; i--) {
             if(adn.get(i)==1){
-                res += Math.pow(2,(i-ini));
+                res += Math.pow(2,(i-rango[0]));
             }
            
         }
+        return res;
+    }
+    
+    
+    public int[] getRangoByte(int nByte){
+        int[] res = new int[2];
+        res[0] = 8*nByte;
+        res[1] = res[0]+7;
         return res;
     }
     
