@@ -22,6 +22,7 @@ public class Terreno {
                 this.espacios[i][j] = TipoTerreno.randomChoice();
             }
         }
+        this.espacios[19][0]=TipoTerreno.NORMAL;
     }
 
     @Override

@@ -55,6 +55,20 @@ public class Generacion {
         return "Generacion{" + "individuos=" + individuos + ", indiceMutacion=" + indiceMutacion + '}';
     }
     
+    public int probarGen(Terreno terreno){
+        int existosos=0;
+        for (int i = 0; i < this.individuos.size(); i++) {
+            this.individuos.get(i).realizarRecorrido(terreno);
+            if(this.individuos.get(i).exitoso){
+                existosos++;
+            }
+        }
+        return existosos;
+        
+    }
+    
+    
+    
     
     
 }

@@ -22,7 +22,8 @@ public class Robot implements Serializable{
     public Bateria bateria;
     public Genes genes;
     public CadenaDeMarkov cadena;
-    private ArrayList<int[]> recorrido;
+    public ArrayList<int[]> recorrido;
+    public boolean exitoso;
     public int[] posActual;
 
     
@@ -37,6 +38,7 @@ public class Robot implements Serializable{
         this.posActual = new int[2];
         this.posActual[0] = 19;
         this.posActual[1] = 0;
+        this.exitoso = false;
     }
     
     public void cruce(Robot robot){
@@ -56,11 +58,21 @@ public class Robot implements Serializable{
     
     
     
+    public void realizarRecorrido(Terreno terreno){
+        while(this.bateria.getCarga()>0){
+            if(moverPosicion(terreno)){
+                break;
+            }
+        }
+    }
     
-    public void moverPosicion(Terreno terreno){
+    
+    
+    
+    public boolean moverPosicion(Terreno terreno){
         calcBetterOptions(posActual, terreno);
         TipoEstado estado = cadena.obtenerEstado();
-        System.out.println("Seleccione la: " + estado);
+        //System.out.println("Seleccione la: " + estado);
         int[] posTemp = new int[2];
         posTemp[0] = posActual[0];
         posTemp[1] = posActual[1];
@@ -86,21 +98,47 @@ public class Robot implements Serializable{
                 }    
                 break;
         }
-        System.out.println("Estaba en: "+posActual[0]+","+posActual[1]);
-        posActual = posTemp;
-        System.out.println("Me movi a: "+posActual[0]+","+posActual[1]);
-        int[][] board = new int[20][20];
-        board[posActual[0]][posActual[1]]=5;
-        String strBoard = "";
-        for (int i = 0; i < board.length; i++) {
-            String line = "";
-            for (int j = 0; j < board[0].length; j++) {
-                line+=board[i][j]+" ";
-            }
-            strBoard+=line+"\n";
-        }
-        System.out.println(strBoard);
         
+        TipoTerreno casilla = terreno.getEspacios()[posActual[0]][posActual[1]];
+        TipoTerreno casillaSig = terreno.getEspacios()[posTemp[0]][posTemp[1]];
+//        System.out.println("Estaba en: "+posActual[0]+","+posActual[1]);
+        if(motor.getTiposDeTerreno().indexOf(casilla) != -1 && casillaSig != TipoTerreno.BLOQUEADO ){
+//            if(motor.getTiposDeTerreno().indexOf(casilla) != -1){
+//                System.out.println("jnwjcdjn");
+//            }
+            posActual = posTemp;
+            
+        }
+        if(posActual[0]==0 && posActual[1]==19){
+            this.exitoso = true;
+            return true;
+        }
+        this.bateria.ReducirCarga(); //// Si no me muevo deberia terminar 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        
+//        
+//
+//        System.out.println("Me movi a: "+posActual[0]+","+posActual[1]);
+//        int[][] board = new int[20][20];
+//        board[posActual[0]][posActual[1]]=5;
+//        String strBoard = "";
+//        for (int i = 0; i < board.length; i++) {
+//            String line = "";
+//            for (int j = 0; j < board[0].length; j++) {
+//                line+=board[i][j]+" ";
+//            }
+//            strBoard+=line+"\n";
+//        }
+//        System.out.println(strBoard);
+        return false;
     }
     
     
@@ -136,9 +174,9 @@ public class Robot implements Serializable{
         cadena.setEstado3(posEstados[2]);
         cadena.setEstado4(posEstados[3]);
         
-        for (int i = 0; i < res.length; i++) {
-            System.out.println("Con : "+res[i]+" El "+i+" es: "+ posEstados[i]);
-        }
+//        for (int i = 0; i < res.length; i++) {
+//            System.out.println("Con : "+res[i]+" El "+i+" es: "+ posEstados[i]);
+//        }
         
     }
     
@@ -176,19 +214,19 @@ public class Robot implements Serializable{
         
         
         if(casilla == TipoTerreno.BLOQUEADO){
-            return -150;
+            return -120;
         }
         else if(motor.getTiposDeTerreno().indexOf(casilla) == -1){
             return -60;
         }
         else if(casilla == TipoTerreno.NORMAL){
-            return 20;
+            return 60;
         }
         else if(casilla == TipoTerreno.MODERADO){
-            return 15;
+            return 60;
         }
         else if(casilla == TipoTerreno.DIFICIL){
-            return 10;
+            return 60;
         }
 
         return 0;

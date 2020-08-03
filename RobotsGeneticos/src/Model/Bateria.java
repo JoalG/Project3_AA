@@ -32,15 +32,15 @@ public class Bateria  implements Serializable {
         switch(tipo){
             case 1:
                 this.costo = 0;
-                this.carga = 0;
+                this.carga = 100;
                 break;
             case 2:
                 this.costo = 0;
-                this.carga = 0;
+                this.carga = 1000;
                 break;
             case 3:
                 this.costo = 0;
-                this.carga = 0;
+                this.carga = 10000;
                 break;
             default:
                 this.costo = 0;
@@ -52,7 +52,7 @@ public class Bateria  implements Serializable {
     
     
     public void ReducirCarga(){
-        return;
+        this.carga--;
     }
 
     public int getCarga() {

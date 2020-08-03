@@ -51,21 +51,27 @@ public class RobotsGeneticos {
       
        Terreno t = new Terreno(20);
        System.out.println(t);
+       Entorno e = new Entorno();
+        System.out.println("Fueron exitosos: "+ e.generaciones.get(0).probarGen(t));
        
        
-        Robot robot1 = new Robot();
-
-        System.out.println(robot1);
-
-        int[] pos = new int[2];
-        pos[0] = 19;
-        pos[1] = 0;
-        for (int i = 0; i < 1000; i++) {
-            System.out.println("------------------------------------------------------------------------------");
-            robot1.moverPosicion(t);
-            System.out.println("------------------------------------------------------------------------------");
-        }
-        
+       
+       
+       
+//        Robot robot1 = new Robot();
+//
+//        System.out.println(robot1);
+//
+//        int[] pos = new int[2];
+//        pos[0] = 19;
+//        pos[1] = 0;
+//        robot1.realizarRecorrido(t);
+////        for (int i = 0; i < 1000; i++) {
+////            System.out.println("------------------------------------------------------------------------------");
+////            robot1.moverPosicion(t);
+////            System.out.println("------------------------------------------------------------------------------");
+////        }
+//        System.out.println(t);
         
 //        
 //        Genes gen = robot1.genes; 
