@@ -25,6 +25,7 @@ public class Robot implements Serializable{
     public ArrayList<int[]> recorrido;
     public boolean exitoso;
     public int[] posActual;
+    public int puntuacion;
 
     
 
@@ -39,6 +40,7 @@ public class Robot implements Serializable{
         this.posActual[0] = 19;
         this.posActual[1] = 0;
         this.exitoso = false;
+        this.puntuacion = 0;
     }
     
     public void cruce(Robot robot){
@@ -57,12 +59,25 @@ public class Robot implements Serializable{
     }
     
     
+    public void calcPuntuacion(){ //Se debe hacer esta funcion , ahorito no es la correcta
+        if(this.exitoso){
+            this.puntuacion = 100;
+        }
+        else{
+            this.puntuacion = 10;
+        }
+       
+    }
+    
+    
     
     public void realizarRecorrido(Terreno terreno){
+        this.recorrido = new ArrayList<>();
         while(this.bateria.getCarga()>0){
             if(moverPosicion(terreno)){
                 break;
             }
+           
         }
     }
     
@@ -109,11 +124,13 @@ public class Robot implements Serializable{
             posActual = posTemp;
             
         }
+        this.recorrido.add(posActual);
         if(posActual[0]==0 && posActual[1]==19){
             this.exitoso = true;
             return true;
         }
-        this.bateria.ReducirCarga(); //// Si no me muevo deberia terminar 
+        this.bateria.ReducirCarga();
+        //System.out.println("Me reduzo :'v"+this.bateria.getCarga());//// Si no me muevo deberia terminar 
         
         
         
@@ -332,7 +349,7 @@ public class Robot implements Serializable{
                 case 0:
                     if(posTemp[0]>0){
                         posTemp[0] = posTemp[0]-1;
-                        res[i] = evaluarDireccion(profundidad, 0, posTemp, terreno,visited)+60;
+                        res[i] = evaluarDireccion(profundidad, 0, posTemp, terreno,visited)+40;
                     }
                     else{
                         res[i] = Integer.MIN_VALUE;
@@ -362,7 +379,7 @@ public class Robot implements Serializable{
                 case 3:
                     if(posTemp[1]<19){
                         posTemp[1] = posTemp[1]+1;
-                        res[i] = evaluarDireccion(profundidad, 0, posTemp, terreno,visited)+60;
+                        res[i] = evaluarDireccion(profundidad, 0, posTemp, terreno,visited)+40;
                     }
                     else{
                         res[i] = Integer.MIN_VALUE;

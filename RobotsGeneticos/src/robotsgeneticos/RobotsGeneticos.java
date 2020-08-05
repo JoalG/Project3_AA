@@ -52,8 +52,32 @@ public class RobotsGeneticos {
        Terreno t = new Terreno(20);
        System.out.println(t);
        Entorno e = new Entorno();
-        System.out.println("Fueron exitosos: "+ e.generaciones.get(0).probarGen(t));
-       
+       System.out.println("Fueron exitosos: "+ e.generaciones.get(0).probarGen(t));
+//       System.out.println("Fueron exitosos: "+ e.generaciones.get(0).probarGen(t));
+//       System.out.println("Fueron exitosos: "+ e.generaciones.get(0).probarGen(t));
+//       System.out.println("Fueron exitosos: "+ e.generaciones.get(0).probarGen(t));
+//       System.out.println("Fueron exitosos: "+ e.generaciones.get(0).probarGen(t));
+       //GENERACION ORIGINAL
+       //VE MELANIA
+//       
+       Generacion nueva = e.generaciones.get(0).createNuevaGeneracion();
+//       
+//       System.out.println("Fueron exitosos: "+ nueva.probarGen(t));
+//       //GENERACION NUEVA SIN CRUCE
+//       
+       nueva.cruzarIndividuos();
+// 
+//        
+//       
+       System.out.println("Fueron exitosos: "+ nueva.probarGen(t));
+       //GENERACION NUEVA CRUCE
+//       
+//       nueva.Mutacion();
+//       
+//       System.out.println("Fueron exitosos: "+ nueva.probarGen(t));
+
+       //GENERACION NUEVA MUTADA
+       //ENTIENDE LOS PRINTS?????
        
        
        

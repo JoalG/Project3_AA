@@ -32,15 +32,15 @@ public class Bateria  implements Serializable {
         switch(tipo){
             case 1:
                 this.costo = 0;
-                this.carga = 100;
+                this.carga = 300;
                 break;
             case 2:
                 this.costo = 0;
-                this.carga = 1000;
+                this.carga = 600;
                 break;
             case 3:
                 this.costo = 0;
-                this.carga = 10000;
+                this.carga = 900;
                 break;
             default:
                 this.costo = 0;

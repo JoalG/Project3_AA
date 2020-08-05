@@ -114,7 +114,7 @@ public class Genes implements Serializable{
         Random r = new Random();
         int pos = r.nextInt(gen.numOfBits);
         
-        System.out.println("Pos: " + pos);
+        //System.out.println("Pos: " + pos);
         
         for (int i = 0; i <= pos; i++) {
             int temp = gen.adn.get(i);

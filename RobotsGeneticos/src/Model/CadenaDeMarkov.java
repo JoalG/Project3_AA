@@ -40,7 +40,7 @@ public class CadenaDeMarkov implements Serializable{
     public TipoEstado obtenerEstado(){
         Random ran = new Random();
         double select = ran.nextDouble()*100;
-        
+        //System.out.println(select);
         if (select < prob1) {
             return estado1;
         }
@@ -48,9 +48,11 @@ public class CadenaDeMarkov implements Serializable{
             return  estado2;
         }
         else if (select >= prob1+prob2 && select < prob1+prob2 +prob3) {
+            //System.out.println(select);
             return  estado3;
         }
         else {
+            //System.out.println(select);
             return  estado4;
         }
     }
