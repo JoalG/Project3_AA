@@ -64,7 +64,7 @@ public class Robot implements Serializable{
             this.puntuacion = 100;
         }
         else{
-            this.puntuacion = 10;
+            this.puntuacion = 50;
         }
        
     }
@@ -73,12 +73,24 @@ public class Robot implements Serializable{
     
     public void realizarRecorrido(Terreno terreno){
         this.recorrido = new ArrayList<>();
+        this.posActual[0] = 19;
+        this.posActual[1] = 0;
+        this.bateria.cargarBateria();
         while(this.bateria.getCarga()>0){
             if(moverPosicion(terreno)){
                 break;
             }
            
         }
+    }
+    
+    public void setHardwareByGenes(){
+        this.camara = genes.getTCamara();
+        this.motor = genes.getTMotor();
+        this.bateria = genes.getTBateria();
+        this.cadena = new CadenaDeMarkov(this.genes);
+        this.recorrido = new ArrayList<>();
+
     }
     
     

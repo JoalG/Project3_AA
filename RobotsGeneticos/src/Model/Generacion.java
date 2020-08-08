@@ -65,6 +65,7 @@ public class Generacion {
         int existosos=0;
         for (int i = 0; i < this.individuos.size(); i++) {
             this.individuos.get(i).exitoso = false;
+            
             this.individuos.get(i).realizarRecorrido(terreno);
             if(this.individuos.get(i).exitoso){
                 existosos++;
@@ -87,6 +88,7 @@ public class Generacion {
         for (int i = 0; i < this.individuos.size(); i++) {
             
             double calificacion = ((double)this.individuos.get(i).puntuacion*100)/(double)total;
+            //System.out.println(calificacion);
             probabilidades.add(calificacion);
         }
         return probabilidades;
@@ -129,6 +131,7 @@ public class Generacion {
             }
             min+=probabilidades.get(i);
         }
+        System.out.println("llegue");
         return -1;
     }
 
@@ -152,7 +155,10 @@ public class Generacion {
     public void cruzarIndividuos(){
         for (int i = 0; i < individuos.size(); i = i+2) {
             individuos.get(i).cruce(individuos.get(i+1));
+            individuos.get(i).setHardwareByGenes();
+            individuos.get(i+1).setHardwareByGenes();
         }
+        
     }
     
     

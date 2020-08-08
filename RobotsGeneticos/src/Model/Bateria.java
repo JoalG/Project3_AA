@@ -15,6 +15,7 @@ public class Bateria  implements Serializable {
     private int tipo;
     private int costo;
     private int carga;
+    private int cargaOrg;
 
 
     
@@ -22,6 +23,7 @@ public class Bateria  implements Serializable {
         this.tipo = tipo;
         this.carga = carga;
         this.costo = costo;
+        this.cargaOrg = carga;
     }
     
     
@@ -36,20 +38,25 @@ public class Bateria  implements Serializable {
                 break;
             case 2:
                 this.costo = 0;
-                this.carga = 600;
+                this.carga = 400;
                 break;
             case 3:
                 this.costo = 0;
-                this.carga = 900;
+                this.carga = 500;
                 break;
             default:
                 this.costo = 0;
                 this.carga = 0;
         }
+        this.cargaOrg = this.carga;
     }
     
     
     
+    
+    public void cargarBateria(){
+        this.carga = this.cargaOrg;
+    }
     
     public void ReducirCarga(){
         this.carga--;
