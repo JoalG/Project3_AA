@@ -86,6 +86,18 @@ public class Bateria  implements Serializable {
         this.tipo = tipo;
     }
     
+    public double getBatteryPercLeft(){
+        return (double)carga / (double)cargaOrg;
+    }
     
+    public double getBatteryValue(){
+        // costo maximo = max int de un byte = 255
+        return costo / 255;
+    }
     
+    public double getBatteryPuntaje(int puntajeMax){
+        int puntajeMaxCosto = puntajeMax/3;
+        int puntajeMaxBatteryLeft = puntajeMax - puntajeMaxCosto;
+        return (puntajeMaxBatteryLeft * getBatteryPercLeft()) + (puntajeMaxCosto * (1-getBatteryValue()));
+    }
 }

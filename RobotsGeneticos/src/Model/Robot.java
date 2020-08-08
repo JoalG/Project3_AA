@@ -60,11 +60,21 @@ public class Robot implements Serializable{
     
     
     public void calcPuntuacion(){ //Se debe hacer esta funcion , ahorito no es la correcta
+        int puntajeExitoso = 70;
+        int puntajeBateria = (int) this.bateria.getBatteryPuntaje(10);
+        int puntajeMotor = (int) this.motor.getMotorPuntaje(10);
+        int puntajeCamara = (int) this.camara.getCamaraPuntaje(10);        
+        int puntajesHardware = puntajeBateria + puntajeMotor + puntajeCamara;
+
         if(this.exitoso){
-            this.puntuacion = 100;
+            this.puntuacion = puntajeExitoso + puntajesHardware;
         }
         else{
-            this.puntuacion = 50;
+            // Meta [0,19]
+            double posActualDistance = Math.hypot((posActual[0]-0)+1,(posActual[1]-19)-1);
+            double maxDistance = Math.hypot((19-0)+1,(0-19)-1);
+            //System.out.println("-----------------------------------------------------------------------" + 100 * (1-(posActualDistance/maxDistance)));
+            this.puntuacion = (int)(puntajeExitoso * (1-(posActualDistance/maxDistance))) + puntajesHardware;
         }
        
     }

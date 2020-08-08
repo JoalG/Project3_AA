@@ -72,4 +72,8 @@ public class Camara implements Serializable{
     public void setConsumo(int consumo) {
         this.consumo = consumo;
     }
+    
+    public double getCamaraPuntaje(int puntajeMax){
+        return puntajeMax * (1-(costo/255));
+    }    
 }

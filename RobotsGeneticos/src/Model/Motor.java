@@ -90,5 +90,8 @@ public class Motor implements Serializable {
         this.tiposDeTerreno = tiposDeTerreno;
     }
     
+    public double getMotorPuntaje(int puntajeMax){
+        return puntajeMax * (1-(costo/255));
+    }
     
 }
