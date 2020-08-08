@@ -15,18 +15,21 @@ import java.util.Random;
 public class Generacion {
     private ArrayList<Robot> individuos;
     private int indiceMutacion;
+    private int numGen;
 
     public Generacion(int cant, int  indiceMutacion) {
         this.indiceMutacion = indiceMutacion;
         this.individuos = new ArrayList<Robot>();
+        this.numGen = 0;
         for (int i = 0; i < cant; i++) {
-            this.individuos.add(new Robot());
+            this.individuos.add(new Robot(i));
         }
     }
     
     public Generacion(int cant, int  indiceMutacion,boolean empty) {
         this.indiceMutacion = indiceMutacion;
         this.individuos = new ArrayList<Robot>();
+        this.numGen = 0;
     }
     
     
@@ -111,8 +114,14 @@ public class Generacion {
            
         }
         for (int i = 0; i < individuosACruzar.size(); i++) {
-            Robot nuevoRobot = (Robot) CloneClass.deepCopy(individuosACruzar.get(i));
+            Robot padre = individuosACruzar.get(i);
+            Robot nuevoRobot = (Robot) CloneClass.deepCopy(padre);
             nuevoRobot.bateria = nuevoRobot.genes.getTBateria();
+            int[] posPadre = new int[2] ;
+            posPadre[0] = this.numGen;
+            posPadre[1] = padre.numeroRobot;
+            nuevoRobot.padre1 = posPadre;
+            nuevoRobot.numeroRobot = i;
             nueva.getIndividuos().add(nuevoRobot);
         }
         
@@ -131,7 +140,6 @@ public class Generacion {
             }
             min+=probabilidades.get(i);
         }
-        System.out.println("llegue");
         return -1;
     }
 
@@ -154,11 +162,24 @@ public class Generacion {
     
     public void cruzarIndividuos(){
         for (int i = 0; i < individuos.size(); i = i+2) {
-            individuos.get(i).cruce(individuos.get(i+1));
-            individuos.get(i).setHardwareByGenes();
-            individuos.get(i+1).setHardwareByGenes();
+            Robot r1 = individuos.get(i);
+            Robot r2 = individuos.get(i+1);
+            r1.cruce(r2);
+            r1.setHardwareByGenes();
+            r2.setHardwareByGenes();
+            r1.padre2 = r2.padre1;
+            r2.padre2 = r1.padre1;
+            
         }
         
+    }
+
+    public int getNumGen() {
+        return numGen;
+    }
+
+    public void setNumGen(int numGen) {
+        this.numGen = numGen;
     }
     
     

@@ -29,12 +29,8 @@ public class RobotsGeneticos {
         Terreno t = new Terreno(20);
         System.out.println(t);
         Entorno e = new Entorno();
-        System.out.println("Corridas Primera Gen ");
-        for (int i = 0; i < 3; i++) {
-            System.out.println("Fueron exitosos: "+ e.generaciones.get(0).probarGen(t));
-          //  Thread.sleep(100);
-        }
-        for (int i = 0; i < 10; i++) {
+        
+        for (int i = 0; i < 20; i++) {
             e.createNewGeneration();
         }
         

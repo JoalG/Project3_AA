@@ -26,10 +26,13 @@ public class Robot implements Serializable{
     public boolean exitoso;
     public int[] posActual;
     public int puntuacion;
+    public int[] padre1;
+    public int[] padre2;
+    public int numeroRobot;
 
     
 
-    public Robot() {
+    public Robot(int numerRobot) {
         this.genes = new Genes();
         this.camara = genes.getTCamara();
         this.motor = genes.getTMotor();
@@ -41,6 +44,9 @@ public class Robot implements Serializable{
         this.posActual[1] = 0;
         this.exitoso = false;
         this.puntuacion = 0;
+        this.padre1 = null;
+        this.padre2 = null;
+        this.numeroRobot = numerRobot;
     }
     
     public void cruce(Robot robot){
@@ -139,45 +145,35 @@ public class Robot implements Serializable{
         TipoTerreno casilla = terreno.getEspacios()[posActual[0]][posActual[1]];
         TipoTerreno casillaSig = terreno.getEspacios()[posTemp[0]][posTemp[1]];
 //        System.out.println("Estaba en: "+posActual[0]+","+posActual[1]);
+        int consumo = 1;
         if(motor.getTiposDeTerreno().indexOf(casilla) != -1 && casillaSig != TipoTerreno.BLOQUEADO ){
 //            if(motor.getTiposDeTerreno().indexOf(casilla) != -1){
 //                System.out.println("jnwjcdjn");
 //            }
-            posActual = posTemp;
+            this.posActual = posTemp;
+            consumo =  calcConsumo(casilla);
             
         }
         this.recorrido.add(posActual);
+        
         if(posActual[0]==0 && posActual[1]==19){
             this.exitoso = true;
             return true;
         }
-        this.bateria.ReducirCarga();
+        
+        this.bateria.ReducirCarga(consumo);
         //System.out.println("Me reduzo :'v"+this.bateria.getCarga());//// Si no me muevo deberia terminar 
         
-        
-        
-        
-        
-        
-        
-        
-        
-//        
-//        
-//
-//        System.out.println("Me movi a: "+posActual[0]+","+posActual[1]);
-//        int[][] board = new int[20][20];
-//        board[posActual[0]][posActual[1]]=5;
-//        String strBoard = "";
-//        for (int i = 0; i < board.length; i++) {
-//            String line = "";
-//            for (int j = 0; j < board[0].length; j++) {
-//                line+=board[i][j]+" ";
-//            }
-//            strBoard+=line+"\n";
-//        }
-//        System.out.println(strBoard);
+
+
         return false;
+    }
+    
+    
+    public int calcConsumo(TipoTerreno casilla){
+        int res = this.camara.getConsumo();
+        res += this.motor.calConsumo(casilla);
+        return res;
     }
     
     

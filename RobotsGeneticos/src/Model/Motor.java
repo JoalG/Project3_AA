@@ -32,19 +32,19 @@ public class Motor implements Serializable {
         
         switch(this.tipo){
             case 1:
-                this.costo = 0;
+                this.costo = 10;
                 this.consumo = 0;
                 this.tiposDeTerreno.add(TipoTerreno.NORMAL);
                 break;
             case 2:
-                this.costo = 0;
-                this.consumo = 0;
+                this.costo = 20;
+                this.consumo = 1;
                 this.tiposDeTerreno.add(TipoTerreno.NORMAL);
                 this.tiposDeTerreno.add(TipoTerreno.MODERADO);
                 break;
             case 3:
-                this.costo = 0;
-                this.consumo = 0;
+                this.costo = 30;
+                this.consumo = 2;
                 this.tiposDeTerreno.add(TipoTerreno.NORMAL);
                 this.tiposDeTerreno.add(TipoTerreno.MODERADO);
                 this.tiposDeTerreno.add(TipoTerreno.DIFICIL);
@@ -56,6 +56,31 @@ public class Motor implements Serializable {
         }
     }
 
+    public int calConsumo(TipoTerreno terreno){
+        if(this.tipo == 1){
+            return 1;
+        }
+        else if(this.tipo == 2){
+            if(terreno == TipoTerreno.NORMAL){
+                return 1;
+            }
+            else{
+                return 2;
+            }
+        }
+        else{
+            if(terreno == TipoTerreno.NORMAL){
+                return 1;
+            }
+            else if(terreno == TipoTerreno.MODERADO){
+                return 2;
+            }
+            else{
+                return 3;
+            }
+        }
+            
+    }
     
     
     public int getCosto() {

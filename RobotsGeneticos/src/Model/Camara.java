@@ -29,16 +29,16 @@ public class Camara implements Serializable{
         
         switch(tipo){
             case 1:
-                this.costo = 0;
-                this.consumo = 0;
+                this.costo = 10;
+                this.consumo = 1;
                 break;
             case 2:
-                this.costo = 0;
-                this.consumo = 0;
+                this.costo = 20;
+                this.consumo = 2;
                 break;
             case 3:
-                this.costo = 0;
-                this.consumo = 0;
+                this.costo = 30;
+                this.consumo = 3;
                 break;
             default:
                 this.costo = 0;
