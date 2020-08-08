@@ -11,7 +11,9 @@ import Model.Entorno;
 import Model.Generacion;
 import Model.Genes;
 import Model.Robot;
+import Model.TableroVista;
 import Model.Terreno;
+import View.RobotInfo;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 /**
@@ -28,10 +30,19 @@ public class RobotsGeneticos {
       
         Terreno t = new Terreno(20);
         System.out.println(t);
+        RobotInfo robotView = new RobotInfo();
+        robotView.setVisible(true);
+        TableroVista tb = new TableroVista(robotView.panelTerreno, t.getEspacios());
         Entorno e = new Entorno();
         
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
             e.createNewGeneration();
+        }
+        for (int i = 0; i <e.generaciones.get(e.generaciones.size()-1).getIndividuos().size() ; i++) {
+            if(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).exitoso){
+                tb.pintarBorde(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).recorrido);
+                break;
+            }
         }
         
 //        
@@ -86,9 +97,6 @@ public class RobotsGeneticos {
 //            System.out.println("Fueron exitosos: "+ nueva.probarGen(t));
 //            //Thread.sleep(100);
 //        }
-        
-        
-        
         
     }    
 
