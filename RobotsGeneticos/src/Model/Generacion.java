@@ -192,4 +192,14 @@ public class Generacion {
         }
         return exitosos;
     }
+    
+    public int getNumOfRobotsMutados(){
+        int mutados = 0;
+        for (int i = 0; i < individuos.size(); i++) {
+            if(individuos.get(i).mutaciones.size() > 0){
+                mutados++;
+            }
+        }
+        return mutados;
+    }
 }

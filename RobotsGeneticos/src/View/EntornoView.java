@@ -20,7 +20,7 @@ public class EntornoView extends javax.swing.JFrame {
     public EntornoView() {
         initComponents();
     }
-
+    
     public void fillCbGeneraciones(int numOfGenerations){
         System.out.println("+++++++++++++++++++++++ NUM OF GENERATIONS: " + numOfGenerations);
         String[] array = new String[numOfGenerations];
@@ -46,10 +46,20 @@ public class EntornoView extends javax.swing.JFrame {
         this.cbExitososPorGeneracion.setModel(new DefaultComboBoxModel<>(array));
     }
     
-    public void _init_components(int numOfGenerations, int numOfRobots, ArrayList<Integer> exitososGeneraciones){
+    public void fillCbMutaciones(ArrayList<Integer> mutacionesGeneraciones){
+        String[] array = new String[mutacionesGeneraciones.size()];
+        for(int i = 0; i < array.length; i++) {
+            array[i] = "Generación " + Integer.toString(i+1) + " fueron mutados: " + mutacionesGeneraciones.get(i);
+        }
+        this.cbMutacionesPorGeneracion.setModel(new DefaultComboBoxModel<>(array));        
+    }
+    
+    
+    public void _init_components(int numOfGenerations, int numOfRobots, ArrayList<Integer> exitososGeneraciones, ArrayList<Integer> mutacionesGeneraciones){
         fillCbGeneraciones(numOfGenerations);
         fillCbRobots(numOfRobots);
         fillCbExitosos(exitososGeneraciones);
+        fillCbMutaciones(mutacionesGeneraciones);
     }
     
     /**
@@ -69,6 +79,9 @@ public class EntornoView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cbExitososPorGeneracion = new javax.swing.JComboBox<>();
         btnExitososEnGeneracion = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        cbMutacionesPorGeneracion = new javax.swing.JComboBox<>();
+        btnMutacionesPorGeneracion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,13 +108,20 @@ public class EntornoView extends javax.swing.JFrame {
 
         btnExitososEnGeneracion.setText("Especificos");
 
+        jLabel4.setText("Mutaciones por generación");
+
+        cbMutacionesPorGeneracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnMutacionesPorGeneracion.setText("Especificos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cbExitososPorGeneracion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -110,15 +130,22 @@ public class EntornoView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbRobots, 0, 132, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(cbExitososPorGeneracion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbMutacionesPorGeneracion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnExitososEnGeneracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBuscarRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnBuscarRobot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExitososEnGeneracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnMutacionesPorGeneracion))
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -133,13 +160,19 @@ public class EntornoView extends javax.swing.JFrame {
                     .addComponent(cbGeneraciones, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbRobots, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarRobot))
-                .addGap(88, 88, 88)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbExitososPorGeneracion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExitososEnGeneracion))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbMutacionesPorGeneracion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMutacionesPorGeneracion))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,11 +220,14 @@ public class EntornoView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBuscarRobot;
     public javax.swing.JButton btnExitososEnGeneracion;
+    public javax.swing.JButton btnMutacionesPorGeneracion;
     public javax.swing.JComboBox<String> cbExitososPorGeneracion;
     public javax.swing.JComboBox<String> cbGeneraciones;
+    public javax.swing.JComboBox<String> cbMutacionesPorGeneracion;
     public javax.swing.JComboBox<String> cbRobots;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

@@ -108,8 +108,8 @@ public class GenesMapper {
         return this.binarioCero;
     }
 
-    public void pintarBorde(int mutuacion){
-        System.out.println("MUTACION EN " + mutuacion);
-        tableroVista[mutuacion].setBorder(borderGreen);
+    public void pintarBorde(int mutacion){
+        System.out.println("MUTACION EN " + mutacion);
+        tableroVista[mutacion].setBorder(borderGreen);
     }    
 }

@@ -30,6 +30,7 @@ public class EntornoController implements ActionListener{
     private void assignActionListener(){
         this.entornoView.btnBuscarRobot.addActionListener(this);
         this.entornoView.btnExitososEnGeneracion.addActionListener(this);
+        this.entornoView.btnMutacionesPorGeneracion.addActionListener(this);
     }
     
     public static void main(String[] args) {
@@ -40,15 +41,18 @@ public class EntornoController implements ActionListener{
             entornoC.entorno.createNewGeneration();
         }
         ArrayList<Integer> exitososGeneraciones = new ArrayList<Integer>();
+        ArrayList<Integer> mutadosGeneraciones = new ArrayList<Integer>();
         entornoC.entorno.generaciones.forEach((generacion) -> {
             exitososGeneraciones.add(generacion.getNumOfRobotsExitosos());
+            mutadosGeneraciones.add(generacion.getNumOfRobotsMutados());
         });
-        entornoC.entornoView._init_components(entornoC.entorno.generaciones.size(), entornoC.entorno.generaciones.get(0).getIndividuos().size(), exitososGeneraciones);
+        
+        entornoC.entornoView._init_components(entornoC.entorno.generaciones.size(), entornoC.entorno.generaciones.get(0).getIndividuos().size(), exitososGeneraciones, mutadosGeneraciones);
         entornoC.entornoView.setVisible(true);
-        entornoC.mostrarMutuaciones();
+        entornoC.mostrarMutaciones();
     }
     
-    private void mostrarMutuaciones(){
+    private void mostrarMutaciones(){
         for (int i = 0; i < this.entorno.generaciones.size(); i++) {
             for (int j = 0; j < this.entorno.generaciones.get(i).getIndividuos().size(); j++) {
                 if(this.entorno.generaciones.get(i).getIndividuos().get(j).mutaciones.size() > 0){
@@ -72,6 +76,10 @@ public class EntornoController implements ActionListener{
         if(event.getSource().equals(this.entornoView.btnExitososEnGeneracion)){
             int generacionNum = this.entornoView.cbExitososPorGeneracion.getSelectedIndex();
             ExitososEnGeneracionController exEnGen = new ExitososEnGeneracionController(generacionNum, this.entorno.terreno.getEspacios(), this.entorno.generaciones); 
+        }
+        if(event.getSource().equals(this.entornoView.btnMutacionesPorGeneracion)){
+            int generacionNum = this.entornoView.cbMutacionesPorGeneracion.getSelectedIndex();
+            MutacionesEnGeneracionController mutEnGen = new MutacionesEnGeneracionController(generacionNum, this.entorno.terreno.getEspacios(), this.entorno.generaciones); 
         }
     }
 }
