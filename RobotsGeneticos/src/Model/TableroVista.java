@@ -115,7 +115,7 @@ public class TableroVista {
     }
     
     private void setEspaciosIcons(){
-        this.caminoNormal = ImageConversion.getIconoNuevos("Images/caminoNormal.png", WIDTH_CUAD, HEIGHT_CUAD);
+        this.caminoNormal = ImageConversion.getIconoNuevos("Images/caminoNormal.jpg", WIDTH_CUAD, HEIGHT_CUAD);
         this.caminoModerado = ImageConversion.getIconoNuevos("Images/caminoModerado.jpg", WIDTH_CUAD, HEIGHT_CUAD);
         this.caminoDificil = ImageConversion.getIconoNuevos("Images/caminoDificil.jpg", WIDTH_CUAD, HEIGHT_CUAD);
         this.caminoBloqueado = ImageConversion.getIconoNuevos("Images/caminoBloqueado.jpg", WIDTH_CUAD, HEIGHT_CUAD);

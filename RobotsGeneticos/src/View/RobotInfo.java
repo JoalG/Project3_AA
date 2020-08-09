@@ -202,7 +202,7 @@ public class RobotInfo extends javax.swing.JFrame {
         jPanel2.add(tfCargaBateria, gridBagConstraints);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(752, 48, 133, 98);
+        jPanel2.setBounds(752, 48, 133, 104);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -258,7 +258,7 @@ public class RobotInfo extends javax.swing.JFrame {
         jPanel3.add(tfConsumoCamara, gridBagConstraints);
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(752, 159, 130, 98);
+        jPanel3.setBounds(752, 159, 130, 104);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(new java.awt.GridBagLayout());
@@ -314,7 +314,7 @@ public class RobotInfo extends javax.swing.JFrame {
         jPanel4.add(tfConsumoMotor, gridBagConstraints);
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(752, 270, 130, 105);
+        jPanel4.setBounds(752, 270, 130, 111);
 
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
@@ -399,7 +399,7 @@ public class RobotInfo extends javax.swing.JFrame {
         jPanel5.add(tfExitoso, gridBagConstraints);
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(639, 391, 246, 140);
+        jPanel5.setBounds(639, 391, 246, 150);
 
         btnAntepasado1.setText("Antepasado 1");
         btnAntepasado1.addActionListener(new java.awt.event.ActionListener() {
