@@ -54,7 +54,7 @@ public class RobotController implements ActionListener{
             if(robot.padre1 != null){
                 int generacionNum = robot.padre1[0];
                 int robotNum = robot.padre1[1];
-
+                System.out.println("PADRE 1: " + robot.padre1[0] + "/" + robot.padre1[1]);
                 Robot searchedRobot = this.generaciones.get(generacionNum).getIndividuos().get(robotNum);
                 RobotController robotController = new RobotController(searchedRobot, generacionNum+1, robotNum+1, this.espacios, this.generaciones);                
             }

@@ -182,5 +182,13 @@ public class Generacion {
         this.numGen = numGen;
     }
     
-    
+    public int getNumOfRobotsExitosos(){
+        int exitosos = 0;
+        for (int i = 0; i < individuos.size(); i++) {
+            if(individuos.get(i).exitoso){
+                exitosos++;
+            }
+        }
+        return exitosos;
+    }
 }

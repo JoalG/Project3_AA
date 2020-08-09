@@ -6,10 +6,12 @@
 package Controller;
 
 import Model.Entorno;
+import Model.Generacion;
 import Model.Robot;
 import View.EntornoView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,6 +29,7 @@ public class EntornoController implements ActionListener{
     
     private void assignActionListener(){
         this.entornoView.btnBuscarRobot.addActionListener(this);
+        this.entornoView.btnExitososEnGeneracion.addActionListener(this);
     }
     
     public static void main(String[] args) {
@@ -35,7 +38,11 @@ public class EntornoController implements ActionListener{
         for (int i = 0; i < 10; i++) {
             entornoC.entorno.createNewGeneration();
         }
-        entornoC.entornoView._init_components(entornoC.entorno.generaciones.size(), entornoC.entorno.generaciones.get(0).getIndividuos().size());
+        ArrayList<Integer> exitososGeneraciones = new ArrayList<Integer>();
+        entornoC.entorno.generaciones.forEach((generacion) -> {
+            exitososGeneraciones.add(generacion.getNumOfRobotsExitosos());
+        });
+        entornoC.entornoView._init_components(entornoC.entorno.generaciones.size(), entornoC.entorno.generaciones.get(0).getIndividuos().size(), exitososGeneraciones);
         entornoC.entornoView.setVisible(true);
     }
     
@@ -48,6 +55,10 @@ public class EntornoController implements ActionListener{
             Robot searchedRobot = this.entorno.generaciones.get(generacionNum).getIndividuos().get(robotNum);
             //System.out.println("DASDA " + searchedRobot.toString());
             RobotController robotController = new RobotController(searchedRobot, generacionNum+1, robotNum+1, this.entorno.terreno.getEspacios(), this.entorno.generaciones);
+        }
+        if(event.getSource().equals(this.entornoView.btnExitososEnGeneracion)){
+            int generacionNum = this.entornoView.cbExitososPorGeneracion.getSelectedIndex();
+            ExitososEnGeneracionController exEnGen = new ExitososEnGeneracionController(generacionNum, this.entorno.terreno.getEspacios(), this.entorno.generaciones); 
         }
     }
 }
