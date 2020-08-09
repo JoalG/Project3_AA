@@ -46,8 +46,8 @@ public class EntornoController implements ActionListener{
             int robotNum = this.entornoView.cbRobots.getSelectedIndex();
             
             Robot searchedRobot = this.entorno.generaciones.get(generacionNum).getIndividuos().get(robotNum);
-            System.out.println("DASDA " + searchedRobot.toString());
-            RobotController robotController = new RobotController(searchedRobot, generacionNum+1, robotNum+1, this.entorno.terreno.getEspacios());
+            //System.out.println("DASDA " + searchedRobot.toString());
+            RobotController robotController = new RobotController(searchedRobot, generacionNum+1, robotNum+1, this.entorno.terreno.getEspacios(), this.entorno.generaciones);
         }
     }
 }

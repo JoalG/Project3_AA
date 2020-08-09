@@ -471,8 +471,8 @@ public class RobotInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAntepasado1;
-    private javax.swing.JButton btnAntepasado2;
+    public javax.swing.JButton btnAntepasado1;
+    public javax.swing.JButton btnAntepasado2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
