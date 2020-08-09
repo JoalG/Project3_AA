@@ -76,13 +76,32 @@ public class Robot implements Serializable{
             this.puntuacion = puntajeExitoso + puntajesHardware;
         }
         else{
-            // Meta [0,19]
-            double posActualDistance = Math.hypot((posActual[0]-0)+1,(posActual[1]-19)-1);
-            double maxDistance = Math.hypot((19-0)+1,(0-19)-1);
-            //System.out.println("-----------------------------------------------------------------------" + 100 * (1-(posActualDistance/maxDistance)));
+            int x2 = 0;
+            int y2 = 19;
+            double posActualDistance = Math.hypot(x2 - posActual[0], y2 - posActual[1]);
+            double maxDistance = Math.hypot(x2 - 19, y2 - 0);
             this.puntuacion = (int)(puntajeExitoso * (1-(posActualDistance/maxDistance))) + puntajesHardware;
+            //System.out.println(posActual[0] + "/" + posActual[1] + "-----------------------------------------------------------------------" + this.puntuacion);            
+        }  
+    }
+    
+    public int getActualAdaptabilidad(){
+        int puntajeExitoso = 70;
+        int puntajeBateria = (int) this.bateria.getBatteryPuntaje(10);
+        int puntajeMotor = (int) this.motor.getMotorPuntaje(10);
+        int puntajeCamara = (int) this.camara.getCamaraPuntaje(10);        
+        int puntajesHardware = puntajeBateria + puntajeMotor + puntajeCamara;
+
+        if(this.exitoso){
+            return puntajeExitoso + puntajesHardware;
         }
-       
+        else{
+            int x2 = 0;
+            int y2 = 19;
+            double posActualDistance = Math.hypot(x2 - posActual[0], y2 - posActual[1]);
+            double maxDistance = Math.hypot(x2 - 19, y2 - 0);
+            return (int)(puntajeExitoso * (1-(posActualDistance/maxDistance))) + puntajesHardware;
+        }      
     }
     
     

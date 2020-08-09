@@ -26,25 +26,28 @@ public class RobotsGeneticos {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        
-      
+        int y1 = 0;
+        int x1 = 19;
+        int x2 = 0;
+        int y2 = 19;
+        System.out.println("dist: " + Math.hypot((x2-x1),(y2-y1)));
 //        Terreno t = new Terreno(20);
-        Entorno e = new Entorno();
-        RobotInfo robotView = new RobotInfo();
-        TableroVista tb = new TableroVista(robotView.panelTerreno, e.terreno.getEspacios());
-        System.out.println(e.terreno);
-
-        for (int i = 0; i < 15; i++) {
-            e.createNewGeneration();
-        }
-        for (int i = 0; i <e.generaciones.get(e.generaciones.size()-1).getIndividuos().size() ; i++) {
-            if(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).exitoso){
-                tb.pintarBorde(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).recorrido);
-                robotView._init_components(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i), e.generaciones.size()-1, e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).numeroRobot);
-                break;
-            }
-        }
-        robotView.setVisible(true);
+//        Entorno e = new Entorno();
+//        RobotInfo robotView = new RobotInfo();
+//        TableroVista tb = new TableroVista(robotView.panelTerreno, e.terreno.getEspacios());
+//        System.out.println(e.terreno);
+//
+//        for (int i = 0; i < 15; i++) {
+//            e.createNewGeneration();
+//        }
+//        for (int i = 0; i <e.generaciones.get(e.generaciones.size()-1).getIndividuos().size() ; i++) {
+//            if(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).exitoso){
+//                tb.pintarBorde(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).recorrido);
+//                robotView._init_components(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i), e.generaciones.size()-1, e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).numeroRobot);
+//                break;
+//            }
+//        }
+//        robotView.setVisible(true);
         
 //        
 //        Generacion nueva = e.generaciones.get(0).createNuevaGeneracion();

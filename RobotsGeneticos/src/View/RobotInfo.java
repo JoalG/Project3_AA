@@ -39,7 +39,7 @@ public class RobotInfo extends javax.swing.JFrame {
     }
     
     public void setTextFieldsInfo(Robot robot, int numGen, int numRobot){
-        this.tfAdaptabilidad.setText(Integer.toString(robot.puntuacion));
+        this.tfAdaptabilidad.setText(Integer.toString(robot.getActualAdaptabilidad()));
         this.tfCargaBateria.setText(Integer.toString(robot.bateria.getCarga()));
         this.tfConsumoCamara.setText(Integer.toString(robot.camara.getConsumo()));
         this.tfConsumoMotor.setText(Integer.toString(robot.motor.getConsumo()));
@@ -114,19 +114,17 @@ public class RobotInfo extends javax.swing.JFrame {
         tfExitoso = new javax.swing.JTextField();
         btnAntepasado1 = new javax.swing.JButton();
         btnAntepasado2 = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        panelHardwareGenes = new javax.swing.JPanel();
+        panelMovementGenes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1152, 677));
-        setPreferredSize(new java.awt.Dimension(1152, 685));
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(1152, 890));
         getContentPane().setLayout(null);
 
         panelTerreno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panelTerreno.setLayout(new java.awt.GridLayout());
+        panelTerreno.setLayout(new java.awt.GridLayout(1, 0));
         getContentPane().add(panelTerreno);
-        panelTerreno.setBounds(19, 37, 602, 602);
+        panelTerreno.setBounds(19, 37, 2, 2);
 
         labelMotor.setText("Motor");
         labelMotor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -204,7 +202,7 @@ public class RobotInfo extends javax.swing.JFrame {
         jPanel2.add(tfCargaBateria, gridBagConstraints);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(752, 48, 133, 96);
+        jPanel2.setBounds(752, 48, 133, 98);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -260,7 +258,7 @@ public class RobotInfo extends javax.swing.JFrame {
         jPanel3.add(tfConsumoCamara, gridBagConstraints);
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(752, 159, 130, 96);
+        jPanel3.setBounds(752, 159, 130, 98);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(new java.awt.GridBagLayout());
@@ -316,7 +314,7 @@ public class RobotInfo extends javax.swing.JFrame {
         jPanel4.add(tfConsumoMotor, gridBagConstraints);
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(752, 270, 130, 103);
+        jPanel4.setBounds(752, 270, 130, 105);
 
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
@@ -416,15 +414,15 @@ public class RobotInfo extends javax.swing.JFrame {
         getContentPane().add(btnAntepasado2);
         btnAntepasado2.setBounds(765, 549, 120, 60);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.setLayout(new java.awt.GridLayout());
-        getContentPane().add(jPanel6);
-        jPanel6.setBounds(972, 159, 30, 384);
+        panelHardwareGenes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelHardwareGenes.setLayout(new java.awt.GridLayout(1, 0));
+        getContentPane().add(panelHardwareGenes);
+        panelHardwareGenes.setBounds(960, 50, 40, 450);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.setLayout(new java.awt.GridLayout());
-        getContentPane().add(jPanel7);
-        jPanel7.setBounds(1043, 95, 32, 514);
+        panelMovementGenes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelMovementGenes.setLayout(new java.awt.GridLayout(1, 0));
+        getContentPane().add(panelMovementGenes);
+        panelMovementGenes.setBounds(1040, 10, 40, 610);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -493,11 +491,11 @@ public class RobotInfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelBateria;
     private javax.swing.JLabel labelCamara;
     private javax.swing.JLabel labelMotor;
+    public javax.swing.JPanel panelHardwareGenes;
+    public javax.swing.JPanel panelMovementGenes;
     public javax.swing.JPanel panelTerreno;
     private javax.swing.JTextField tfAdaptabilidad;
     private javax.swing.JTextField tfCargaBateria;
