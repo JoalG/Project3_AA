@@ -29,8 +29,8 @@ public class Entorno {
     
     public void createNewGeneration(){
         Generacion nueva = this.generaciones.get(this.generaciones.size()-1).createNuevaGeneracion();
-        nueva.Mutacion();
         nueva.cruzarIndividuos();
+        nueva.Mutacion();
         nueva.setNumGen(this.generaciones.get(this.generaciones.size()-1).getNumGen()+1);
         this.generaciones.add(nueva);
         //System.out.println("Corrida------------------------------------");

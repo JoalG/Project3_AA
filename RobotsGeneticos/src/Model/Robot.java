@@ -29,6 +29,7 @@ public class Robot implements Serializable{
     public int[] padre1;
     public int[] padre2;
     public int numeroRobot;
+    public ArrayList<Integer> mutaciones;
 
     
 
@@ -47,6 +48,7 @@ public class Robot implements Serializable{
         this.padre1 = null;
         this.padre2 = null;
         this.numeroRobot = numerRobot;
+        this.mutaciones = new ArrayList<>();
     }
     
     public void cruce(Robot robot){

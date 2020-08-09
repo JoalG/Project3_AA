@@ -45,6 +45,7 @@ public class Generacion {
             else{
                 individuos.get(j).genes.getAdn().set(k, 1);
             }
+            individuos.get(j).mutaciones.add(k);
      
         }
     }
@@ -68,6 +69,7 @@ public class Generacion {
         int existosos=0;
         for (int i = 0; i < this.individuos.size(); i++) {
             this.individuos.get(i).exitoso = false;
+            this.individuos.get(i).setHardwareByGenes();
             
             this.individuos.get(i).realizarRecorrido(terreno);
             if(this.individuos.get(i).exitoso){
@@ -116,12 +118,13 @@ public class Generacion {
         for (int i = 0; i < individuosACruzar.size(); i++) {
             Robot padre = individuosACruzar.get(i);
             Robot nuevoRobot = (Robot) CloneClass.deepCopy(padre);
-            nuevoRobot.bateria = nuevoRobot.genes.getTBateria();
+            
             int[] posPadre = new int[2] ;
             posPadre[0] = this.numGen;
             posPadre[1] = padre.numeroRobot;
             nuevoRobot.padre1 = posPadre;
             nuevoRobot.numeroRobot = i;
+            nuevoRobot.mutaciones = new ArrayList<>();
             nueva.getIndividuos().add(nuevoRobot);
         }
         
@@ -165,8 +168,6 @@ public class Generacion {
             Robot r1 = individuos.get(i);
             Robot r2 = individuos.get(i+1);
             r1.cruce(r2);
-            r1.setHardwareByGenes();
-            r2.setHardwareByGenes();
             r1.padre2 = r2.padre1;
             r2.padre2 = r1.padre1;
             
