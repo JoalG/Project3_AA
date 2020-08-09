@@ -45,6 +45,18 @@ public class EntornoController implements ActionListener{
         });
         entornoC.entornoView._init_components(entornoC.entorno.generaciones.size(), entornoC.entorno.generaciones.get(0).getIndividuos().size(), exitososGeneraciones);
         entornoC.entornoView.setVisible(true);
+        entornoC.mostrarMutuaciones();
+    }
+    
+    private void mostrarMutuaciones(){
+        for (int i = 0; i < this.entorno.generaciones.size(); i++) {
+            for (int j = 0; j < this.entorno.generaciones.get(i).getIndividuos().size(); j++) {
+                if(this.entorno.generaciones.get(i).getIndividuos().get(j).mutaciones.size() > 0){
+                    System.out.println("-----muta----- GENERACION: " + (i+1) + " ROBOT: " + (j+1));                                   
+                }
+            }
+            
+        }
     }
     
     @Override

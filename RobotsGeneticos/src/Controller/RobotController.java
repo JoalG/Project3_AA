@@ -38,6 +38,7 @@ public class RobotController implements ActionListener{
         this.hardwareGenesMapper = new GenesMapper(this.robotInfo.panelHardwareGenes, this.robot.genes.getAdn(), 24);
         this.MovementGenesMapper = new GenesMapper(this.robotInfo.panelMovementGenes, this.robot.genes.getAdn(), 32);
         this.robotInfo._init_components(robot, generacionNum, robotNum);
+        showMutuaciones();
         this.robotInfo.setVisible(true);
         assignActionListener();
     }
@@ -45,6 +46,18 @@ public class RobotController implements ActionListener{
     public void assignActionListener(){
         this.robotInfo.btnAntepasado1.addActionListener(this);
         this.robotInfo.btnAntepasado2.addActionListener(this);
+    }
+    
+    private void showMutuaciones(){
+        for (int i = 0; i < this.robot.mutaciones.size(); i++) {
+            int mutuacion = this.robot.mutaciones.get(i);
+            if(mutuacion >= 24){
+                this.MovementGenesMapper.pintarBorde(mutuacion-24);
+            }
+            else{
+                this.hardwareGenesMapper.pintarBorde(mutuacion);
+            }
+        }
     }
     
     @Override

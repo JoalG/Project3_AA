@@ -107,5 +107,9 @@ public class GenesMapper {
         }
         return this.binarioCero;
     }
-    
+
+    public void pintarBorde(int mutuacion){
+        System.out.println("MUTACION EN " + mutuacion);
+        tableroVista[mutuacion].setBorder(borderGreen);
+    }    
 }
