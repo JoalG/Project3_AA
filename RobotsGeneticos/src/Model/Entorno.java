@@ -31,13 +31,14 @@ public class Entorno {
         Generacion nueva = this.generaciones.get(this.generaciones.size()-1).createNuevaGeneracion();
         nueva.Mutacion();
         nueva.cruzarIndividuos();
+        nueva.setNumGen(this.generaciones.get(this.generaciones.size()-1).getNumGen()+1);
         this.generaciones.add(nueva);
         //System.out.println("Corrida------------------------------------");
         for (int i = 0; i < 1; i++) {
             System.out.println("Fueron exitosos: "+ nueva.probarGen(this.terreno));
             //Thread.sleep(100);
         }
-        nueva.setNumGen(this.generaciones.get(this.generaciones.size()-1).getNumGen()+1);
+        
     }
     
 

@@ -108,6 +108,7 @@ public class Robot implements Serializable{
     
     public void realizarRecorrido(Terreno terreno){
         this.recorrido = new ArrayList<>();
+        this.recorrido.add(new int[] {19,0} );
         this.posActual[0] = 19;
         this.posActual[1] = 0;
         this.bateria.cargarBateria();

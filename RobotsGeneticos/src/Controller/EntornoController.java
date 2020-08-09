@@ -35,6 +35,7 @@ public class EntornoController implements ActionListener{
     public static void main(String[] args) {
         EntornoController entornoC = new EntornoController();
         System.out.println("WAITING...");
+        entornoC.entorno.generaciones.get(0).probarGen(entornoC.entorno.terreno);
         for (int i = 0; i < 10; i++) {
             entornoC.entorno.createNewGeneration();
         }
