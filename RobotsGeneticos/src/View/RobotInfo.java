@@ -5,8 +5,10 @@
  */
 package View;
 
+import Model.Robot;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -20,29 +22,42 @@ public class RobotInfo extends javax.swing.JFrame {
     public JButton myTablero[][] = new JButton[CANT_ESPACIOS][CANT_ESPACIOS];
     
     
-    public void agregarMatrizBotones(JPanel panel, JButton[][] matriz){
-        panel.setLayout(null);
-        panel.setSize(WIDTH_CUAD*CANT_ESPACIOS, HEIGHT_CUAD*CANT_ESPACIOS);
-        for (int i = 0; i < CANT_ESPACIOS; i++) {
-            for (int j = 0; j < CANT_ESPACIOS; j++) {
-                //JButton btnNew = new JButton(ImageConversion.getIconoNuevos("Images/agua2.png", WIDTH_CUAD, HEIGHT_CUAD));
-                JButton btnNew = new JButton();
-                btnNew.setBackground(Color.cyan);
-                btnNew.setSize(WIDTH_CUAD, HEIGHT_CUAD);
-                btnNew.setVisible(true);
-                matriz[i][j] = btnNew;
-                
-                panel.add(matriz[i][j]);
-                
-                matriz[i][j].setBounds(WIDTH_CUAD*i, HEIGHT_CUAD*j, WIDTH_CUAD, HEIGHT_CUAD);
-                matriz[i][j].setOpaque(false);
-                
-                panel.validate();
-                panel.repaint();
-            }
-        }
-    }    
+    public void setTextFieldsEditableFalse(){
+        this.tfAdaptabilidad.setEditable(false);
+        this.tfCargaBateria.setEditable(false);
+        this.tfConsumoCamara.setEditable(false);
+        this.tfConsumoMotor.setEditable(false);
+        this.tfCostoBateria.setEditable(false);
+        this.tfCostoCamara.setEditable(false);
+        this.tfCostoMotor.setEditable(false);
+        this.tfExitoso.setEditable(false);
+        this.tfGeneracion.setEditable(false);
+        this.tfModeloBateria.setEditable(false);
+        this.tfModeloCamara.setEditable(false);
+        this.tfModeloMotor.setEditable(false);
+        this.tfNumeroRobot.setEditable(false);
+    }
     
+    public void setTextFieldsInfo(Robot robot, int numGen, int numRobot){
+        this.tfAdaptabilidad.setText(Integer.toString(robot.puntuacion));
+        this.tfCargaBateria.setText(Integer.toString(robot.bateria.getCarga()));
+        this.tfConsumoCamara.setText(Integer.toString(robot.camara.getConsumo()));
+        this.tfConsumoMotor.setText(Integer.toString(robot.motor.getConsumo()));
+        this.tfCostoBateria.setText(Integer.toString(robot.bateria.getCosto()));
+        this.tfCostoCamara.setText(Integer.toString(robot.camara.getCosto()));
+        this.tfCostoMotor.setText(Integer.toString(robot.motor.getCosto()));
+        this.tfExitoso.setText(Boolean.toString(robot.exitoso));
+        this.tfGeneracion.setText(Integer.toString(numGen));
+        this.tfModeloBateria.setText(Integer.toString(robot.bateria.getTipo()));
+        this.tfModeloMotor.setText(Integer.toString(robot.motor.getTipo()));
+        this.tfModeloCamara.setText(Integer.toString(robot.camara.getTipo()));
+        this.tfNumeroRobot.setText(Integer.toString(numRobot));
+    }
+    
+    public void _init_components(Robot robot, int numGen, int numRobot){
+        setTextFieldsEditableFalse();
+        setTextFieldsInfo(robot, numGen, numRobot);
+    }
     
     
     /**
@@ -63,46 +78,46 @@ public class RobotInfo extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         panelTerreno = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelMotor = new javax.swing.JLabel();
+        labelCamara = new javax.swing.JLabel();
+        labelBateria = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        tfModeloBateria = new javax.swing.JTextField();
+        tfCostoBateria = new javax.swing.JTextField();
+        tfCargaBateria = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        tfModeloCamara = new javax.swing.JTextField();
+        tfCostoCamara = new javax.swing.JTextField();
+        tfConsumoCamara = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        tfModeloMotor = new javax.swing.JTextField();
+        tfCostoMotor = new javax.swing.JTextField();
+        tfConsumoMotor = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tfGeneracion = new javax.swing.JTextField();
+        tfNumeroRobot = new javax.swing.JTextField();
+        tfAdaptabilidad = new javax.swing.JTextField();
+        tfExitoso = new javax.swing.JTextField();
+        btnAntepasado1 = new javax.swing.JButton();
+        btnAntepasado2 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1152, 677));
         setPreferredSize(new java.awt.Dimension(1152, 685));
         setResizable(false);
@@ -113,20 +128,20 @@ public class RobotInfo extends javax.swing.JFrame {
         getContentPane().add(panelTerreno);
         panelTerreno.setBounds(19, 37, 602, 602);
 
-        jLabel1.setText("Motor");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(639, 270, 95, 103);
+        labelMotor.setText("Motor");
+        labelMotor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(labelMotor);
+        labelMotor.setBounds(639, 270, 95, 103);
 
-        jLabel2.setText("Camara");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(639, 48, 95, 96);
+        labelCamara.setText("Bateria");
+        labelCamara.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(labelCamara);
+        labelCamara.setBounds(639, 48, 95, 96);
 
-        jLabel3.setText("Bateria");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(639, 159, 95, 96);
+        labelBateria.setText("Camara");
+        labelBateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(labelBateria);
+        labelBateria.setBounds(639, 159, 95, 96);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -157,10 +172,9 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(9, 11, 0, 0);
         jPanel2.add(jLabel6, gridBagConstraints);
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfModeloBateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfModeloBateriaActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -170,9 +184,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 4, 0, 0);
-        jPanel2.add(jTextField1, gridBagConstraints);
-
-        jTextField2.setText("jTextField2");
+        jPanel2.add(tfModeloBateria, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -180,9 +192,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 0);
-        jPanel2.add(jTextField2, gridBagConstraints);
-
-        jTextField3.setText("jTextField3");
+        jPanel2.add(tfCostoBateria, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
@@ -191,7 +201,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 5, 12, 20);
-        jPanel2.add(jTextField3, gridBagConstraints);
+        jPanel2.add(tfCargaBateria, gridBagConstraints);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(752, 48, 133, 96);
@@ -224,8 +234,6 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(9, 11, 0, 0);
         jPanel3.add(jLabel9, gridBagConstraints);
-
-        jTextField4.setText("jTextField4");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -233,9 +241,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 4, 0, 11);
-        jPanel3.add(jTextField4, gridBagConstraints);
-
-        jTextField5.setText("jTextField5");
+        jPanel3.add(tfModeloCamara, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -243,9 +249,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 11);
-        jPanel3.add(jTextField5, gridBagConstraints);
-
-        jTextField6.setText("jTextField6");
+        jPanel3.add(tfCostoCamara, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
@@ -253,7 +257,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 12, 11);
-        jPanel3.add(jTextField6, gridBagConstraints);
+        jPanel3.add(tfConsumoCamara, gridBagConstraints);
 
         getContentPane().add(jPanel3);
         jPanel3.setBounds(752, 159, 130, 96);
@@ -286,8 +290,6 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(9, 11, 0, 0);
         jPanel4.add(jLabel12, gridBagConstraints);
-
-        jTextField7.setText("jTextField7");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -295,9 +297,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 4, 0, 11);
-        jPanel4.add(jTextField7, gridBagConstraints);
-
-        jTextField8.setText("jTextField8");
+        jPanel4.add(tfModeloMotor, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -305,9 +305,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 11);
-        jPanel4.add(jTextField8, gridBagConstraints);
-
-        jTextField9.setText("jTextField9");
+        jPanel4.add(tfCostoMotor, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
@@ -315,7 +313,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 19, 11);
-        jPanel4.add(jTextField9, gridBagConstraints);
+        jPanel4.add(tfConsumoMotor, gridBagConstraints);
 
         getContentPane().add(jPanel4);
         jPanel4.setBounds(752, 270, 130, 103);
@@ -365,8 +363,6 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(9, 53, 0, 0);
         jPanel5.add(jLabel17, gridBagConstraints);
-
-        jTextField10.setText("jTextField10");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 1;
@@ -375,9 +371,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 59;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 55);
-        jPanel5.add(jTextField10, gridBagConstraints);
-
-        jTextField11.setText("jTextField11");
+        jPanel5.add(tfGeneracion, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 3;
@@ -386,9 +380,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 59;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 55);
-        jPanel5.add(jTextField11, gridBagConstraints);
-
-        jTextField12.setText("jTextField12");
+        jPanel5.add(tfNumeroRobot, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 5;
@@ -397,9 +389,7 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 59;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 55);
-        jPanel5.add(jTextField12, gridBagConstraints);
-
-        jTextField13.setText("jTextField13");
+        jPanel5.add(tfAdaptabilidad, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 7;
@@ -408,23 +398,23 @@ public class RobotInfo extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 59;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 4, 11, 55);
-        jPanel5.add(jTextField13, gridBagConstraints);
+        jPanel5.add(tfExitoso, gridBagConstraints);
 
         getContentPane().add(jPanel5);
         jPanel5.setBounds(639, 391, 246, 140);
 
-        jButton1.setText("Antepasado 1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAntepasado1.setText("Antepasado 1");
+        btnAntepasado1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAntepasado1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(639, 549, 120, 60);
+        getContentPane().add(btnAntepasado1);
+        btnAntepasado1.setBounds(639, 549, 120, 60);
 
-        jButton2.setText("Antepasado 2");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(765, 549, 120, 60);
+        btnAntepasado2.setText("Antepasado 2");
+        getContentPane().add(btnAntepasado2);
+        btnAntepasado2.setBounds(765, 549, 120, 60);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel6.setLayout(new java.awt.GridLayout());
@@ -439,13 +429,13 @@ public class RobotInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAntepasado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAntepasado1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAntepasado1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfModeloBateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfModeloBateriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfModeloBateriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -483,9 +473,8 @@ public class RobotInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnAntepasado1;
+    private javax.swing.JButton btnAntepasado2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -494,8 +483,6 @@ public class RobotInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -508,19 +495,22 @@ public class RobotInfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel labelBateria;
+    private javax.swing.JLabel labelCamara;
+    private javax.swing.JLabel labelMotor;
     public javax.swing.JPanel panelTerreno;
+    private javax.swing.JTextField tfAdaptabilidad;
+    private javax.swing.JTextField tfCargaBateria;
+    private javax.swing.JTextField tfConsumoCamara;
+    private javax.swing.JTextField tfConsumoMotor;
+    private javax.swing.JTextField tfCostoBateria;
+    private javax.swing.JTextField tfCostoCamara;
+    private javax.swing.JTextField tfCostoMotor;
+    private javax.swing.JTextField tfExitoso;
+    private javax.swing.JTextField tfGeneracion;
+    private javax.swing.JTextField tfModeloBateria;
+    private javax.swing.JTextField tfModeloCamara;
+    private javax.swing.JTextField tfModeloMotor;
+    private javax.swing.JTextField tfNumeroRobot;
     // End of variables declaration//GEN-END:variables
 }

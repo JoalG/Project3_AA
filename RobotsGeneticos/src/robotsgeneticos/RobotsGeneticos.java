@@ -28,22 +28,23 @@ public class RobotsGeneticos {
     public static void main(String[] args) throws InterruptedException {
         
       
-        Terreno t = new Terreno(20);
-        System.out.println(t);
-        RobotInfo robotView = new RobotInfo();
-        robotView.setVisible(true);
-        TableroVista tb = new TableroVista(robotView.panelTerreno, t.getEspacios());
+//        Terreno t = new Terreno(20);
         Entorno e = new Entorno();
-        
-        for (int i = 0; i < 1; i++) {
+        RobotInfo robotView = new RobotInfo();
+        TableroVista tb = new TableroVista(robotView.panelTerreno, e.terreno.getEspacios());
+        System.out.println(e.terreno);
+
+        for (int i = 0; i < 15; i++) {
             e.createNewGeneration();
         }
         for (int i = 0; i <e.generaciones.get(e.generaciones.size()-1).getIndividuos().size() ; i++) {
             if(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).exitoso){
                 tb.pintarBorde(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).recorrido);
+                robotView._init_components(e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i), e.generaciones.size()-1, e.generaciones.get(e.generaciones.size()-1).getIndividuos().get(i).numeroRobot);
                 break;
             }
         }
+        robotView.setVisible(true);
         
 //        
 //        Generacion nueva = e.generaciones.get(0).createNuevaGeneracion();

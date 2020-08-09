@@ -19,7 +19,7 @@ public class Entorno {
         this.terreno = new Terreno(20);
         this.generaciones = new ArrayList<Generacion>();
         this.generaciones.add(new Generacion(200, 20));
-        System.out.println("Fueron exitosos: "+ this.generaciones.get(0).probarGen(this.terreno));
+        //System.out.println("Fueron exitosos: "+ this.generaciones.get(0).probarGen(this.terreno));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class Entorno {
         nueva.Mutacion();
         nueva.cruzarIndividuos();
         this.generaciones.add(nueva);
-        System.out.println("Corrida------------------------------------");
+        //System.out.println("Corrida------------------------------------");
         for (int i = 0; i < 1; i++) {
             System.out.println("Fueron exitosos: "+ nueva.probarGen(this.terreno));
             //Thread.sleep(100);

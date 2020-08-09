@@ -64,6 +64,9 @@ public class Bateria  implements Serializable {
     
     public void ReducirCarga(int cantidad){
         this.carga -= cantidad;
+        if(this.carga < 0){
+            this.carga = 0;
+        }
     }
 
     public int getCarga() {
