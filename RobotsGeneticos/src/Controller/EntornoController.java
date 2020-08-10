@@ -33,13 +33,11 @@ public class EntornoController implements ActionListener{
         this.entornoView.btnMutacionesPorGeneracion.addActionListener(this);
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         EntornoController entornoC = new EntornoController();
         System.out.println("WAITING...");
         entornoC.entorno.generaciones.get(0).probarGen(entornoC.entorno.terreno);
-        for (int i = 0; i < 10; i++) {
-            entornoC.entorno.createNewGeneration();
-        }
+        entornoC.entorno.algoritmoGenetico();
         ArrayList<Integer> exitososGeneraciones = new ArrayList<Integer>();
         ArrayList<Integer> mutadosGeneraciones = new ArrayList<Integer>();
         entornoC.entorno.generaciones.forEach((generacion) -> {

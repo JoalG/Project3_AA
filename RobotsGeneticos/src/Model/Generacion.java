@@ -16,11 +16,13 @@ public class Generacion {
     private ArrayList<Robot> individuos;
     private int indiceMutacion;
     private int numGen;
+    private ArrayList<Double> puntuaciones;
 
     public Generacion(int cant, int  indiceMutacion) {
         this.indiceMutacion = indiceMutacion;
         this.individuos = new ArrayList<Robot>();
         this.numGen = 0;
+        this.puntuaciones = new ArrayList<>();
         for (int i = 0; i < cant; i++) {
             this.individuos.add(new Robot(i));
         }
@@ -30,6 +32,7 @@ public class Generacion {
         this.indiceMutacion = indiceMutacion;
         this.individuos = new ArrayList<Robot>();
         this.numGen = 0;
+        this.puntuaciones = new ArrayList<>();
     }
     
     
@@ -65,7 +68,7 @@ public class Generacion {
     }
     
     public int probarGen(Terreno terreno){
-        
+       
         int existosos=0;
         for (int i = 0; i < this.individuos.size(); i++) {
             this.individuos.get(i).exitoso = false;
@@ -91,7 +94,7 @@ public class Generacion {
         ArrayList<Double> probabilidades = new ArrayList<>();
         
         for (int i = 0; i < this.individuos.size(); i++) {
-            
+            this.puntuaciones.add((double)this.individuos.get(i).puntuacion);
             double calificacion = ((double)this.individuos.get(i).puntuacion*100)/(double)total;
             //System.out.println(calificacion);
             probabilidades.add(calificacion);
@@ -103,7 +106,7 @@ public class Generacion {
     
     public Generacion createNuevaGeneracion(){
         Generacion nueva = new Generacion(this.individuos.size(), this.indiceMutacion, true);
-        ArrayList<Double> puntuaciones = calcPuntuaciones();
+        ArrayList<Double> puntuacionesNuevas = calcPuntuaciones();
 //        for (int i = 0; i < puntuaciones.size(); i++) {
 //            System.out.println(puntuaciones.get(i));
 //        }
@@ -112,7 +115,7 @@ public class Generacion {
         Random ran = new Random();
         for (int i = 0; i < individuos.size(); i++) {
            double val = ran.nextDouble()*100;
-           individuosACruzar.add(individuos.get(getIndexRandom(puntuaciones, val)));
+           individuosACruzar.add(individuos.get(getIndexRandom(puntuacionesNuevas, val)));
            
         }
         for (int i = 0; i < individuosACruzar.size(); i++) {
@@ -127,6 +130,13 @@ public class Generacion {
             nuevoRobot.mutaciones = new ArrayList<>();
             nueva.getIndividuos().add(nuevoRobot);
         }
+        ArrayList<Double> pruebaVar = new  ArrayList<>();
+        pruebaVar.add(5.0);
+        pruebaVar.add(6.0);
+        pruebaVar.add(6.0);
+        pruebaVar.add(7.0);
+        pruebaVar.add(8.0);
+        nueva.setPuntuaciones(pruebaVar);
         
         return nueva;
     }
@@ -202,4 +212,38 @@ public class Generacion {
         }
         return mutados;
     }
+
+    public ArrayList<Double> getPuntuaciones() {
+        return puntuaciones;
+    }
+
+    public void setPuntuaciones(ArrayList<Double> puntuaciones) {
+        this.puntuaciones = puntuaciones;
+    }
+    
+    public double calcVarianza(){
+        
+        
+        double promedio = 0;
+        
+        for (int i = 0; i < this.puntuaciones.size(); i++) {
+            promedio += ((double)this.puntuaciones.get(i));
+        }
+        
+        promedio /= (double)this.puntuaciones.size();
+        
+        double res = 0;
+        
+        for (int i = 0; i < puntuaciones.size(); i++) {
+            res += Math.pow((((double)this.puntuaciones.get(i))-promedio), 2);
+        }
+        
+        res /= (double)this.puntuaciones.size();
+        
+        
+        
+        return res;
+    }
+    
+    
 }
