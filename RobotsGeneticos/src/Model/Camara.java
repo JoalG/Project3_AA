@@ -74,6 +74,6 @@ public class Camara implements Serializable{
     }
     
     public double getCamaraPuntaje(int puntajeMax){
-        return puntajeMax * (1-(costo/255));
+        return puntajeMax * (1-(costo/40));
     }    
 }

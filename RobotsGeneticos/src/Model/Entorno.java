@@ -38,7 +38,7 @@ public class Entorno {
         this.generaciones.add(nueva);
         //System.out.println("Corrida------------------------------------");
         for (int i = 0; i < 1; i++) {
-            System.out.println("Fueron exitosos: "+ nueva.probarGen(this.terreno));
+            nueva.probarGen(this.terreno);
             //Thread.sleep(100);
         }
         return vieja.calcVarianza();
@@ -50,7 +50,7 @@ public class Entorno {
         double pasado = 0.0;
         while(true) {
             double actual = createNewGeneration();
-            System.out.println(actual-pasado);
+            //System.out.println(actual-pasado);
             if (actual-pasado >-0.3 && actual-pasado<0.3) {
                 break;
             }

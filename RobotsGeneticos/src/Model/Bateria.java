@@ -99,7 +99,7 @@ public class Bateria  implements Serializable {
     
     public double getBatteryValue(){
         // costo maximo = max int de un byte = 255
-        return costo / 255;
+        return costo / 40;
     }
     
     public double getBatteryPuntaje(int puntajeMax){

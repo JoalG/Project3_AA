@@ -116,7 +116,7 @@ public class Motor implements Serializable {
     }
     
     public double getMotorPuntaje(int puntajeMax){
-        return puntajeMax * (1-(costo/255));
+        return puntajeMax * (1-(costo/40));
     }
     
 }
